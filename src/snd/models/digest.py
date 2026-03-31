@@ -1,0 +1,1 @@
+"""Digest ORM model."""
