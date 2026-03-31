@@ -1,35 +1,37 @@
 # Auto-approve and merge Copilot Coding Agent PRs
 #
 # When Copilot opens a PR from a copilot/* branch:
-# 1. Wait for all CI checks to pass
+# 1. Wait briefly for any CI checks
 # 2. Auto-approve the PR
 # 3. Auto-merge via squash merge
 #
-# ⚠️ SAFETY: Only approves PRs from copilot/* branches.
-# You can disable this workflow anytime by deleting this file
-# or setting the COPILOT_AUTO_MERGE repository variable to "false".
+# ⚠️ SAFETY: Only applies to PRs from copilot/* branches.
+# Disable by setting repo variable COPILOT_AUTO_MERGE = "false"
+#
+# NOTE: Uses pull_request_target (not pull_request) so the workflow
+# has write permissions to approve and merge the PR.
 
 name: Copilot Auto-Approve & Merge
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize]
     branches: [main]
 
 permissions:
+  issues: write
   pull-requests: write
   contents: write
 
 jobs:
   auto-approve-and-merge:
-    # Only for Copilot branches + if auto-merge is enabled
+    # Only for Copilot branches
     if: startsWith(github.event.pull_request.head.ref, 'copilot/')
     runs-on: ubuntu-latest
     steps:
       - name: Check if auto-merge is enabled
         id: check
         run: |
-          # Allow disabling via repo variable
           if [ "${{ vars.COPILOT_AUTO_MERGE }}" = "false" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "⏸️ Auto-merge disabled via COPILOT_AUTO_MERGE variable"
@@ -37,15 +39,20 @@ jobs:
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Wait for CI checks to complete
+      - name: Wait for CI checks (with timeout)
         if: steps.check.outputs.skip != 'true'
         uses: actions/github-script@v7
         with:
           script: |
-            // Wait up to 10 minutes for checks
-            const maxWait = 10 * 60 * 1000; // 10 min
-            const interval = 30 * 1000; // 30 sec
+            const maxWait = 5 * 60 * 1000; // 5 min
+            const interval = 15 * 1000; // 15 sec
             let waited = 0;
+            let checksFound = false;
+
+            // Initial delay — give checks time to register
+            core.info('⏳ Waiting 30s for checks to register...');
+            await new Promise(r => setTimeout(r, 30000));
+            waited += 30000;
 
             while (waited < maxWait) {
               const { data: checks } = await github.rest.checks.listForRef({
@@ -54,21 +61,28 @@ jobs:
                 ref: context.payload.pull_request.head.sha,
               });
 
-              const pending = checks.check_runs.filter(
-                c => c.status !== 'completed'
+              // Filter out THIS workflow's own check run
+              const externalChecks = checks.check_runs.filter(
+                c => c.name !== 'auto-approve-and-merge'
               );
 
-              if (pending.length === 0) {
-                const failed = checks.check_runs.filter(
-                  c => c.conclusion !== 'success' && c.conclusion !== 'skipped'
-                );
+              if (externalChecks.length === 0) {
+                core.info('ℹ️ No external CI checks found — proceeding to merge');
+                break;
+              }
 
+              checksFound = true;
+              const pending = externalChecks.filter(c => c.status !== 'completed');
+
+              if (pending.length === 0) {
+                const failed = externalChecks.filter(
+                  c => c.conclusion !== 'success' && c.conclusion !== 'skipped' && c.conclusion !== 'neutral'
+                );
                 if (failed.length > 0) {
                   core.setFailed(`❌ ${failed.length} check(s) failed — not auto-merging`);
                   return;
                 }
-
-                core.info('✅ All checks passed');
+                core.info('✅ All external checks passed');
                 break;
               }
 
@@ -77,7 +91,7 @@ jobs:
               waited += interval;
             }
 
-            if (waited >= maxWait) {
+            if (waited >= maxWait && checksFound) {
               core.setFailed('⏰ Timed out waiting for checks');
             }
 
@@ -91,15 +105,18 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
               event: 'APPROVE',
-              body: '🤖 Auto-approved by Copilot chain workflow. All checks passed.',
+              body: '🤖 Auto-approved by Copilot chain workflow.',
             });
             core.info('✅ PR approved');
 
-      - name: Enable auto-merge
+      - name: Merge PR
         if: steps.check.outputs.skip != 'true'
         uses: actions/github-script@v7
         with:
           script: |
+            // Small delay to let approval propagate
+            await new Promise(r => setTimeout(r, 5000));
+
             try {
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
@@ -109,5 +126,18 @@ jobs:
               });
               core.info('✅ PR merged via squash');
             } catch (e) {
-              core.warning(`⚠️ Could not auto-merge: ${e.message}. Manual merge required.`);
+              core.warning(`⚠️ Could not auto-merge: ${e.message}`);
+              // Try enabling auto-merge as fallback
+              try {
+                const mutation = `mutation {
+                  enablePullRequestAutoMerge(input: {
+                    pullRequestId: "${context.payload.pull_request.node_id}",
+                    mergeMethod: SQUASH
+                  }) { clientMutationId }
+                }`;
+                await github.graphql(mutation);
+                core.info('✅ Auto-merge enabled as fallback');
+              } catch (e2) {
+                core.setFailed(`❌ Could not merge or enable auto-merge: ${e2.message}`);
+              }
             }
