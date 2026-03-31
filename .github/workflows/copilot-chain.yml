@@ -1,0 +1,85 @@
+# Auto-chain: Assign next Phase 1 issue to Copilot after PR merge
+#
+# Flow:
+# 1. Copilot Coding Agent completes an issue and opens a PR
+# 2. PR passes checks → auto-approved → merged
+# 3. This workflow finds the next unassigned "phase-1" issue
+# 4. Assigns it to @copilot → cycle repeats
+#
+# To start the chain: manually assign issue #1 to @copilot
+
+name: Copilot Auto-Chain
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  assign-next-issue:
+    # Only run when a Copilot PR is merged (not just closed)
+    if: >-
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'copilot/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find and assign next Phase 1 issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Find all open issues with "phase-1" label, sorted by number (ascending)
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'phase-1',
+              sort: 'created',
+              direction: 'asc',
+              per_page: 20,
+            });
+
+            // Filter to unassigned issues only
+            const unassigned = issues.filter(i => i.assignees.length === 0);
+
+            if (unassigned.length === 0) {
+              core.info('🎉 All Phase 1 issues are assigned or completed!');
+              return;
+            }
+
+            const nextIssue = unassigned[0];
+            core.info(`📋 Next issue: #${nextIssue.number} — ${nextIssue.title}`);
+
+            // Assign to Copilot
+            await github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: nextIssue.number,
+              assignees: ['copilot'],
+            });
+
+            core.info(`✅ Assigned #${nextIssue.number} to @copilot`);
+
+            // Add a comment for visibility
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: nextIssue.number,
+              body: `🤖 Auto-assigned to @copilot by the chain workflow.\n\nPrevious issue completed via PR #${context.payload.pull_request.number}.`,
+            });
+
+  # Auto-approve Copilot PRs that pass all checks
+  auto-approve:
+    if: >-
+      github.event.pull_request.merged == false &&
+      github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR was closed without merge — skipping"
+
+  # Separate workflow job for approving new Copilot PRs
+  # (This triggers on PR open, not close — see copilot-auto-approve.yml)

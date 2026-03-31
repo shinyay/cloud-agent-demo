@@ -1,0 +1,113 @@
+# Auto-approve and merge Copilot Coding Agent PRs
+#
+# When Copilot opens a PR from a copilot/* branch:
+# 1. Wait for all CI checks to pass
+# 2. Auto-approve the PR
+# 3. Auto-merge via squash merge
+#
+# ⚠️ SAFETY: Only approves PRs from copilot/* branches.
+# You can disable this workflow anytime by deleting this file
+# or setting the COPILOT_AUTO_MERGE repository variable to "false".
+
+name: Copilot Auto-Approve & Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  auto-approve-and-merge:
+    # Only for Copilot branches + if auto-merge is enabled
+    if: startsWith(github.event.pull_request.head.ref, 'copilot/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if auto-merge is enabled
+        id: check
+        run: |
+          # Allow disabling via repo variable
+          if [ "${{ vars.COPILOT_AUTO_MERGE }}" = "false" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "⏸️ Auto-merge disabled via COPILOT_AUTO_MERGE variable"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Wait for CI checks to complete
+        if: steps.check.outputs.skip != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Wait up to 10 minutes for checks
+            const maxWait = 10 * 60 * 1000; // 10 min
+            const interval = 30 * 1000; // 30 sec
+            let waited = 0;
+
+            while (waited < maxWait) {
+              const { data: checks } = await github.rest.checks.listForRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: context.payload.pull_request.head.sha,
+              });
+
+              const pending = checks.check_runs.filter(
+                c => c.status !== 'completed'
+              );
+
+              if (pending.length === 0) {
+                const failed = checks.check_runs.filter(
+                  c => c.conclusion !== 'success' && c.conclusion !== 'skipped'
+                );
+
+                if (failed.length > 0) {
+                  core.setFailed(`❌ ${failed.length} check(s) failed — not auto-merging`);
+                  return;
+                }
+
+                core.info('✅ All checks passed');
+                break;
+              }
+
+              core.info(`⏳ Waiting for ${pending.length} check(s)...`);
+              await new Promise(r => setTimeout(r, interval));
+              waited += interval;
+            }
+
+            if (waited >= maxWait) {
+              core.setFailed('⏰ Timed out waiting for checks');
+            }
+
+      - name: Approve PR
+        if: steps.check.outputs.skip != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              event: 'APPROVE',
+              body: '🤖 Auto-approved by Copilot chain workflow. All checks passed.',
+            });
+            core.info('✅ PR approved');
+
+      - name: Enable auto-merge
+        if: steps.check.outputs.skip != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number,
+                merge_method: 'squash',
+              });
+              core.info('✅ PR merged via squash');
+            } catch (e) {
+              core.warning(`⚠️ Could not auto-merge: ${e.message}. Manual merge required.`);
+            }
