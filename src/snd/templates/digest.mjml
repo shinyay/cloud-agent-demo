@@ -1,0 +1,10 @@
+<!-- MJML email template for digest delivery -->
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text>Strategic Narrative Diff — Digest</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
