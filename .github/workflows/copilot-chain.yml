@@ -28,7 +28,7 @@ jobs:
       startsWith(github.event.pull_request.head.ref, 'copilot/')
     runs-on: ubuntu-latest
     steps:
-      - name: Find and assign next Phase 1 issue
+      - name: Find next Phase 1 issue and notify
         uses: actions/github-script@v7
         with:
           script: |
@@ -43,34 +43,38 @@ jobs:
               per_page: 20,
             });
 
-            // Filter to unassigned issues only
-            const unassigned = issues.filter(i => i.assignees.length === 0);
+            if (issues.length === 0) {
+              core.info('🎉 All Phase 1 issues are completed!');
 
-            if (unassigned.length === 0) {
-              core.info('🎉 All Phase 1 issues are assigned or completed!');
+              // Post a celebration comment on the merged PR
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: '🎉 **All Phase 1 issues are complete!** The Smart RSS Reader is ready.',
+              });
               return;
             }
 
-            const nextIssue = unassigned[0];
+            const nextIssue = issues[0];
             core.info(`📋 Next issue: #${nextIssue.number} — ${nextIssue.title}`);
 
-            // Assign to Copilot
-            await github.rest.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: nextIssue.number,
-              assignees: ['copilot'],
-            });
-
-            core.info(`✅ Assigned #${nextIssue.number} to @copilot`);
-
-            // Add a comment for visibility
+            // Post a comment on the next issue with assignment instructions
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: nextIssue.number,
-              body: `🤖 Auto-assigned to @copilot by the chain workflow.\n\nPrevious issue completed via PR #${context.payload.pull_request.number}.`,
+              body: [
+                `🔗 **Ready to start!** Previous issue completed via PR #${context.payload.pull_request.number}.`,
+                '',
+                '👉 **Assign this issue to \`@copilot\` to continue the chain:**',
+                `   [Click here to assign →](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${nextIssue.number}#partial-issue-sidebar)`,
+                '',
+                '_Tip: Click the "Assignees" gear icon on the right sidebar and type \`copilot\`._',
+              ].join('\n'),
             });
+
+            core.info(`✅ Posted assignment prompt on #${nextIssue.number}`);
 
   # Auto-approve Copilot PRs that pass all checks
   auto-approve:
