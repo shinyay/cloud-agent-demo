@@ -160,8 +160,17 @@ Read the downloaded content, extract the relevant information, and write your re
 - ✅ Use the correct filename format: `_posts/YYYY-MM-DD-HH-MM-slug.md`
 
 ### You must NOT:
-- ❌ Modify ANY existing files (no changes to `_posts/`, `_layouts/`, `_config.yml`, `assets/`, `index.md`, `about.md`)
-- ❌ Create files outside of `_posts/`
+- ❌ Modify ANY existing files (no changes to `_posts/`, `_config.yml`, `about.md`)
+- ❌ Create files outside of `_posts/` (except Design Specialist — see below)
 - ❌ Commit secrets, tokens, or credentials
 - ❌ Make up or fabricate information not found in the fetched content
 - ❌ Modify this AGENTS.md file
+
+### Special Permission: Design Specialist Agent
+The **Design Specialist** persona (`.github/agents/design-specialist.agent.md`) has additional permissions:
+- ✅ CAN modify `assets/css/style.css`
+- ✅ CAN modify `_layouts/default.html` and `_layouts/post.html`
+- ✅ CAN modify `index.md`
+- ✅ CAN create/modify files in `assets/css/themes/`
+- ✅ CAN modify `_data/designs.yml`
+- ❌ Cannot modify `_posts/`, `AGENTS.md`, `about.md`, `.github/ISSUE_TEMPLATE/`

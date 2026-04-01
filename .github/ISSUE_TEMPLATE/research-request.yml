@@ -33,6 +33,7 @@ body:
         - "🇯🇵 Japan Market Specialist — JP context, bilingual / 日本市場スペシャリスト"
         - "🆚 Competitive Analyst — Cross-source comparison / 競合分析"
         - "✍️ LinkedIn Draft Assistant — Ready-to-post LinkedIn drafts / LinkedIn投稿作成"
+        - "🎨 Design Specialist — Frontend design, CSS, layouts / デザイン・フロントエンド"
       default: 0
     validations:
       required: true

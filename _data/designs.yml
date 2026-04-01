@@ -1,0 +1,6 @@
+designs:
+  - name: "Microsoft Fluent"
+    slug: "microsoft-fluent"
+    description: "Clean, professional design inspired by Microsoft Fluent Design System. Blue primary (#0078D4), glassmorphism navigation, gradient hero section, 2-column card grid with hover animations, dark mode support."
+    created: "2026-04-01"
+    active: true
