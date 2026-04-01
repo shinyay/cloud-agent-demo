@@ -21,6 +21,8 @@ microsoft:
     label: Tech Community Hub
   - domain: tech.hub.ms
     label: Tech Hub
+  - domain: learn.microsoft.com
+    label: Microsoft Learn
 
 github:
   - domain: github.blog

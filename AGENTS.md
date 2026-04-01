@@ -36,6 +36,7 @@ You can fetch content from these domains:
 - `developer.microsoft.com` — Microsoft for Developers
 - `techcommunity.microsoft.com` — Tech Community Hub
 - `tech.hub.ms` — Tech Hub
+- `learn.microsoft.com` — Microsoft Learn
 
 **GitHub:**
 - `github.blog` — GitHub Blog + Changelog
