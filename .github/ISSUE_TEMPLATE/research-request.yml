@@ -23,11 +23,51 @@ body:
       required: true
 
   - type: dropdown
+    id: detail-level
+    attributes:
+      label: "📊 Detail Level / 詳細レベル"
+      description: "How detailed should the report be? / どの程度詳細にしますか？"
+      options:
+        - "Brief — Key points only / 簡潔 — 要点のみ"
+        - "Standard — Summaries + analysis / 標準 — 要約＋分析"
+        - "Detailed — Deep analysis + quotes + comparisons / 詳細 — 深い分析＋引用＋比較"
+      default: 1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: "🌐 Report Language / レポート言語"
+      description: "What language should the report be in? / レポートの言語は？"
+      options:
+        - "Japanese and English / 日本語と英語"
+        - "Japanese / 日本語"
+        - "English"
+        - "Auto (match source language / ソースに合わせる)"
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
     id: sources
     attributes:
       label: "📂 Information Sources / 情報ソース"
       description: "Select the sources to check (multi-select) / チェックするソースを選択（複数可）"
       multiple: true
+      default:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
       options:
         - "Official Microsoft Blog (blogs.microsoft.com)"
         - "Microsoft AI Blog (microsoft.com/ai/blog)"
@@ -41,32 +81,6 @@ body:
         - "GitHub Changelog (github.blog/changelog)"
         - "GitHub Docs (docs.github.com)"
         - "Other (specify in Additional Instructions)"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: language
-    attributes:
-      label: "🌐 Report Language / レポート言語"
-      description: "What language should the report be in? / レポートの言語は？"
-      options:
-        - "Auto (match source language / ソースに合わせる)"
-        - "English"
-        - "Japanese / 日本語"
-      default: 0
-    validations:
-      required: true
-
-  - type: dropdown
-    id: detail-level
-    attributes:
-      label: "📊 Detail Level / 詳細レベル"
-      description: "How detailed should the report be? / どの程度詳細にしますか？"
-      options:
-        - "Brief — Key points only / 簡潔 — 要点のみ"
-        - "Standard — Summaries + analysis / 標準 — 要約＋分析"
-        - "Detailed — Deep analysis + quotes + comparisons / 詳細 — 深い分析＋引用＋比較"
-      default: 1
     validations:
       required: true
 
