@@ -163,7 +163,7 @@ Microsoft AI Tour was held at Tokyo Big Sight, attracting thousands of executive
 
 ## 📊 By the Numbers / 数字で見る
 
-- **15件** — 3月31日〜4月1日に公開された Microsoft・GitHub 関連の記事・アップデート数 / articles and updates published March 31–April 1
+- **16件** — 3月31日〜4月1日に公開された Microsoft・GitHub 関連の記事・アップデート数 / articles and updates published March 31–April 1
 - **9種類** — GitHub secret scanning に追加された新シークレットタイプ / new secret types added to GitHub secret scanning
 - **94%超** — 日経225企業の Microsoft 365 Copilot 導入率 / Nikkei 225 companies using Microsoft 365 Copilot
 - **160%超** — Copilot 有償シート数の前年同期比成長率 / year-over-year growth in paid Copilot seats
