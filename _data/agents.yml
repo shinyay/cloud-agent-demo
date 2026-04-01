@@ -1,0 +1,42 @@
+agents:
+  - name: "Executive Analyst"
+    slug: "executive-analyst"
+    icon: "🏢"
+    description: "Strategic intelligence analyst focused on business implications, leadership signals, and action items for senior executives."
+    file: ".github/agents/executive-analyst.agent.md"
+
+  - name: "Technical Researcher"
+    slug: "technical-researcher"
+    icon: "🔬"
+    description: "Deep-dive technical analyst focused on product specs, API changes, architecture decisions, and engineering details."
+    file: ".github/agents/technical-researcher.agent.md"
+
+  - name: "News Curator"
+    slug: "news-curator"
+    icon: "📰"
+    description: "Broad news aggregator that covers many articles briefly in a digestible, chronological format."
+    file: ".github/agents/news-curator.agent.md"
+
+  - name: "Japan Market Specialist"
+    slug: "japan-market-specialist"
+    icon: "🇯🇵"
+    description: "Bilingual analyst specializing in Japanese market context, cultural nuance, and Microsoft Japan relevance."
+    file: ".github/agents/japan-market-specialist.agent.md"
+
+  - name: "Competitive Analyst"
+    slug: "competitive-analyst"
+    icon: "🆚"
+    description: "Cross-source comparison specialist who identifies patterns, divergences, and competitive positioning."
+    file: ".github/agents/competitive-analyst.agent.md"
+
+  - name: "LinkedIn Draft Assistant"
+    slug: "linkedin-draft-assistant"
+    icon: "✍️"
+    description: "Creates ready-to-post LinkedIn drafts for executives with proper formatting, hooks, CTAs, and hashtags."
+    file: ".github/agents/linkedin-draft-assistant.agent.md"
+
+  - name: "Design Specialist"
+    slug: "design-specialist"
+    icon: "🎨"
+    description: "Frontend developer and design systems specialist who creates beautiful, modern, responsive web designs."
+    file: ".github/agents/design-specialist.agent.md"

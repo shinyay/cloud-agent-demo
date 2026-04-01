@@ -34,6 +34,7 @@ body:
         - "🆚 Competitive Analyst — Cross-source comparison / 競合分析"
         - "✍️ LinkedIn Draft Assistant — Ready-to-post LinkedIn drafts / LinkedIn投稿作成"
         - "🎨 Design Specialist — Frontend design, CSS, layouts / デザイン・フロントエンド"
+        - "🛠️ Agent Creator — Create new custom agents / カスタムエージェント作成"
       default: 0
     validations:
       required: true
