@@ -1,8 +1,6 @@
 name: "📊 Research Request"
 description: "Request a new intelligence report curated by Copilot Coding Agent"
-title: ""
 labels: ["report"]
-assignees: []
 body:
   - type: markdown
     attributes:
@@ -86,7 +84,6 @@ body:
         - "GitHub Changelog (github.blog/changelog)"
         - "GitHub Docs (docs.github.com)"
         - "Other (specify in Additional Instructions)"
-      default: 0
     validations:
       required: true
 
