@@ -1,0 +1,33 @@
+# Source domains for the Copilot Coding Agent firewall allowlist
+# This file is the source of truth — the admin page reads from here
+# Changes should be made via the Admin page (creates an issue)
+
+microsoft:
+  - domain: blogs.microsoft.com
+    label: Official Microsoft Blog
+  - domain: microsoft.com
+    label: Microsoft AI Blog, Security Blog
+  - domain: devblogs.microsoft.com
+    label: Microsoft Dev Blogs
+  - domain: azure.microsoft.com
+    label: Azure Blog
+  - domain: news.microsoft.com
+    label: News Center (including Japan)
+  - domain: blogs.windows.com
+    label: Windows Blog (including Japan)
+  - domain: developer.microsoft.com
+    label: Microsoft for Developers
+  - domain: techcommunity.microsoft.com
+    label: Tech Community Hub
+  - domain: tech.hub.ms
+    label: Tech Hub
+
+github:
+  - domain: github.blog
+    label: GitHub Blog + Changelog
+  - domain: github.com
+    label: GitHub Roadmap, Advisories
+  - domain: githubuniverse.com
+    label: GitHub Universe
+  - domain: docs.github.com
+    label: GitHub Docs
