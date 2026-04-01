@@ -27,30 +27,62 @@ title: Home
 
 <main class="container">
   {% if site.posts.size > 0 %}
-    <h3 class="section-title">📋 Recent Reports</h3>
-    <ul class="report-list">
-      {% for post in site.posts %}
-        <li class="report-card">
-          <a href="{{ post.url | relative_url }}">
-            <div class="report-card-date">📅 {{ post.date | date: "%Y-%m-%d %H:%M" }}</div>
-            <div class="report-card-title">{{ post.title }}</div>
-            {% if post.excerpt %}
-              <div class="report-card-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
-            {% endif %}
-            <div class="report-card-footer">
-              <div class="report-card-tags">
-                {% if post.tone %}
-                  <span class="tag tone-tag">🎨 {{ post.tone }}</span>
+
+    <!-- Two-panel layout: main (today) + sidebar (older) -->
+    <div class="dashboard-layout">
+
+      <!-- Main area: today's reports -->
+      <div class="dashboard-main">
+        <h3 class="section-title">📋 Today's Reports</h3>
+        <ul class="report-list" id="today-reports">
+          {% for post in site.posts %}
+            <li class="report-card" data-date="{{ post.date | date: '%Y-%m-%d' }}">
+              <a href="{{ post.url | relative_url }}">
+                <div class="report-card-date">📅 {{ post.date | date: "%Y-%m-%d %H:%M" }}</div>
+                <div class="report-card-title">{{ post.title }}</div>
+                {% if post.excerpt %}
+                  <div class="report-card-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
                 {% endif %}
-                {% for tag in post.tags %}
-                  <span class="tag">{{ tag }}</span>
-                {% endfor %}
-              </div>
-            </div>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+                <div class="report-card-footer">
+                  <div class="report-card-tags">
+                    {% if post.tone %}
+                      <span class="tag tone-tag">🎨 {{ post.tone }}</span>
+                    {% endif %}
+                    {% for tag in post.tags %}
+                      <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        <div id="no-today" class="empty-state" style="display: none;">
+          <h3>No reports today yet</h3>
+          <p><a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">Request a new report</a> to get started!</p>
+        </div>
+      </div>
+
+      <!-- Sidebar: older reports -->
+      <aside class="dashboard-sidebar">
+        <h3 class="section-title">📁 Recent Reports</h3>
+        <ul class="sidebar-report-list" id="older-reports">
+          {% for post in site.posts %}
+            <li class="sidebar-report-item" data-date="{{ post.date | date: '%Y-%m-%d' }}" style="display: none;">
+              <a href="{{ post.url | relative_url }}">
+                <div class="sidebar-report-date">{{ post.date | date: "%m/%d %H:%M" }}</div>
+                <div class="sidebar-report-title">{{ post.title }}</div>
+                {% if post.excerpt %}
+                  <div class="sidebar-report-excerpt">{{ post.excerpt | strip_html | truncate: 80 }}</div>
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </aside>
+
+    </div>
+
   {% else %}
     <div class="empty-state">
       <h3>No reports yet</h3>
@@ -58,3 +90,35 @@ title: Home
     </div>
   {% endif %}
 </main>
+
+<script>
+  // Split reports into "today" and "older" based on visitor's local date
+  (function() {
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' +
+      String(today.getMonth() + 1).padStart(2, '0') + '-' +
+      String(today.getDate()).padStart(2, '0');
+
+    var todayCards = document.querySelectorAll('#today-reports .report-card');
+    var olderItems = document.querySelectorAll('#older-reports .sidebar-report-item');
+    var hasTodayPosts = false;
+
+    todayCards.forEach(function(card) {
+      if (card.dataset.date !== todayStr) {
+        card.style.display = 'none';
+      } else {
+        hasTodayPosts = true;
+      }
+    });
+
+    olderItems.forEach(function(item) {
+      if (item.dataset.date !== todayStr) {
+        item.style.display = 'block';
+      }
+    });
+
+    if (!hasTodayPosts) {
+      document.getElementById('no-today').style.display = 'block';
+    }
+  })();
+</script>
