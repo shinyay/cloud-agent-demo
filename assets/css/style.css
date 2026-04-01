@@ -284,8 +284,21 @@ main {
 .report-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .report-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .report-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1440px) {
+  .report-list { grid-template-columns: repeat(4, 1fr); }
+  .container { max-width: 1400px; }
 }
 
 .report-card {
@@ -659,10 +672,6 @@ main {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .report-list {
-    grid-template-columns: 1fr;
-  }
-
   .hero-title { font-size: 22px; }
   .hero-stats { gap: 16px; }
   .hero-stat-number { font-size: 20px; }
