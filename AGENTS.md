@@ -115,11 +115,13 @@ The issue form includes a **Tone** selection. Adapt your writing style according
 
 | Tone | Style | Structure |
 |------|-------|-----------|
-| **Executive Briefing** | Concise, action-oriented, focus on "so what?" and implications. Lead with the most important finding. Use bullet points heavily. Skip background — assume the reader is a senior executive. | Key Finding → Impact → Details → Action Items |
+| **Executive Briefing** | Concise, action-oriented, bullet-heavy, focus on "so what?" and implications. Lead with the most important finding. Assume the reader is a senior executive. | Key Finding → Impact → Details → Action Items |
+| **Journalistic** | Neutral, objective, fact-driven. Inverted pyramid (most important first). Attribution for every claim. No editorializing. | Headline Summary → Key Facts → Supporting Details → Context |
 | **Analytical** | Data-driven, comparative. Identify patterns and trends across sources. Include numbers and metrics when available. Draw connections between articles. | Overview → Analysis by Theme → Cross-Source Patterns → Implications |
-| **Journalistic** | Neutral, objective, fact-driven. Use inverted pyramid (most important first). Attribution for every claim. No editorializing. | Headline Summary → Key Facts → Supporting Details → Context |
 | **Technical** | Precise, detailed. Include specific product names, version numbers, API details, architecture decisions. Assume technical literacy. | Summary → Technical Details → Implementation Notes → References |
-| **Casual** | Conversational, friendly, accessible. Use analogies and plain language. Add personality. Good for sharing widely. | Hook → "Here's the deal..." → Key Points → "Bottom line..." |
+| **Casual / Newsletter** | Conversational, friendly, accessible. Use analogies and plain language. Add personality and opinions. Good for sharing widely. | Hook → "Here's the deal..." → Key Points → "Bottom line..." |
+| **Academic** | Formal, structured, heavily cited, objective. Use complete sentences. Reference sources inline. Maintain scholarly distance from the material. | Abstract → Background → Analysis → Discussion → Conclusion |
+| **Strategic** | Forward-looking, competitor-aware, implications-heavy. Frame everything in terms of strategic positioning and future impact. | Strategic Context → Key Developments → Competitive Implications → Outlook |
 
 ## How to Fetch Content
 

@@ -42,10 +42,12 @@ body:
       description: "What writing style should the report use? / レポートの文体は？"
       options:
         - "Executive Briefing — Concise, action-oriented, 'so what?' focus / エグゼクティブ向け — 簡潔で行動指向"
-        - "Analytical — Data-driven, comparative, trends + implications / 分析的 — データ重視、トレンド＋示唆"
         - "Journalistic — Neutral, fact-driven, news style / ジャーナリスティック — 中立的、事実重視"
+        - "Analytical — Data-driven, comparative, trends + implications / 分析的 — データ重視、トレンド＋示唆"
         - "Technical — Precise, detailed, specs + architecture / テクニカル — 正確で詳細、技術仕様"
-        - "Casual — Conversational, friendly, newsletter style / カジュアル — 会話調、ニュースレター風"
+        - "Casual / Newsletter — Conversational, friendly, light / カジュアル — 会話調、ニュースレター風"
+        - "Academic — Formal, structured, heavily cited / アカデミック — 形式的、構造的、引用重視"
+        - "Strategic — Forward-looking, competitor-aware, implications / 戦略的 — 将来志向、競合意識、示唆重視"
       default: 0
     validations:
       required: true
