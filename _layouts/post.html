@@ -19,6 +19,9 @@ layout: default
         {% for tag in page.tags %}
           <span class="tag">{{ tag }}</span>
         {% endfor %}
+        {% if page.tone %}
+          <span class="tag tone-tag">🎨 {{ page.tone }}</span>
+        {% endif %}
       </div>
     {% endif %}
     {% if page.source_urls %}

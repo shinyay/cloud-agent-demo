@@ -150,6 +150,11 @@ main {
   margin-top: 4px;
 }
 
+.tone-tag {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
 /* Report Page */
 .report-header {
   margin-bottom: 32px;

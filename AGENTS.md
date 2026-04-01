@@ -61,6 +61,7 @@ layout: post
 title: "Clear, descriptive title of the report"
 date: YYYY-MM-DD HH:MM:SS +0900
 tags: [tag1, tag2, tag3]
+tone: "Executive Briefing"
 source_urls:
   - https://example.com/article1
   - https://example.com/article2
@@ -74,6 +75,7 @@ excerpt: "One-sentence summary of what this report covers"
 - `title`: Descriptive title (in the language matching the content)
 - `date`: Current date/time with `+0900` timezone
 - `tags`: 2-5 relevant topic tags (e.g., AI, Copilot, Azure, Security, GitHub)
+- `tone`: The writing style selected in the issue form
 - `source_urls`: List of ALL URLs you fetched content from
 - `issue_number`: The GitHub Issue number that triggered this report
 - `excerpt`: One-sentence summary for the dashboard card
@@ -105,8 +107,19 @@ Summary of content from source 2.
 - **Include direct links** — always link to original articles
 - **Quote sparingly** — use `>` blockquotes for key passages only
 - **Write in the source language** — EN sources → EN report, JP sources → JP report, mixed → bilingual sections
-- **Be analytical** — don't just list articles; identify themes and patterns
 - **Be concise** — aim for 500-1500 words per report
+
+### Tone Guidelines
+
+The issue form includes a **Tone** selection. Adapt your writing style accordingly:
+
+| Tone | Style | Structure |
+|------|-------|-----------|
+| **Executive Briefing** | Concise, action-oriented, focus on "so what?" and implications. Lead with the most important finding. Use bullet points heavily. Skip background — assume the reader is a senior executive. | Key Finding → Impact → Details → Action Items |
+| **Analytical** | Data-driven, comparative. Identify patterns and trends across sources. Include numbers and metrics when available. Draw connections between articles. | Overview → Analysis by Theme → Cross-Source Patterns → Implications |
+| **Journalistic** | Neutral, objective, fact-driven. Use inverted pyramid (most important first). Attribution for every claim. No editorializing. | Headline Summary → Key Facts → Supporting Details → Context |
+| **Technical** | Precise, detailed. Include specific product names, version numbers, API details, architecture decisions. Assume technical literacy. | Summary → Technical Details → Implementation Notes → References |
+| **Casual** | Conversational, friendly, accessible. Use analogies and plain language. Add personality. Good for sharing widely. | Hook → "Here's the deal..." → Key Points → "Bottom line..." |
 
 ## How to Fetch Content
 
