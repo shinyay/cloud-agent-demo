@@ -63,7 +63,7 @@ title: Home
         </div>
       </div>
 
-      <!-- Sidebar: older reports -->
+      <!-- Sidebar: older reports (max 5) -->
       <aside class="dashboard-sidebar">
         <h3 class="section-title">📁 Recent Reports</h3>
         <ul class="sidebar-report-list" id="older-reports">
@@ -79,6 +79,11 @@ title: Home
             </li>
           {% endfor %}
         </ul>
+        {% if site.posts.size > 5 %}
+        <div style="text-align: center; padding-top: 12px; border-top: 1px solid var(--color-border, #eee); margin-top: 8px;">
+          <a href="{{ '/archive' | relative_url }}" style="font-size: 14px; font-weight: 600; color: var(--color-primary, #0078D4);">View All Reports →</a>
+        </div>
+        {% endif %}
       </aside>
 
     </div>
@@ -102,6 +107,7 @@ title: Home
     var todayCards = document.querySelectorAll('#today-reports .report-card');
     var olderItems = document.querySelectorAll('#older-reports .sidebar-report-item');
     var hasTodayPosts = false;
+    var olderCount = 0;
 
     todayCards.forEach(function(card) {
       if (card.dataset.date !== todayStr) {
@@ -113,7 +119,10 @@ title: Home
 
     olderItems.forEach(function(item) {
       if (item.dataset.date !== todayStr) {
-        item.style.display = 'block';
+        olderCount++;
+        if (olderCount <= 5) {
+          item.style.display = 'block';
+        }
       }
     });
 
