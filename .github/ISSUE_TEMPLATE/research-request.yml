@@ -99,6 +99,7 @@ body:
         - "GitHub Blog (github.blog)"
         - "GitHub Changelog (github.blog/changelog)"
         - "GitHub Docs (docs.github.com)"
+        - "Microsoft Learn (learn.microsoft.com)"
         - "Other (specify in Additional Instructions)"
       default: 0
     validations:
