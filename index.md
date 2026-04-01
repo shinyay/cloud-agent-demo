@@ -32,6 +32,6 @@ title: Home
 {% else %}
   <div class="empty-state">
     <h3>No reports yet</h3>
-    <p>Create a <a href="https://github.com/shinyay/project-miki/issues/new" target="_blank">new GitHub Issue</a> describing what you'd like to research, then assign it to <code>@copilot</code>.</p>
+    <p>Create a <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">new report request</a> and assign it to <code>@copilot</code>.</p>
   </div>
 {% endif %}

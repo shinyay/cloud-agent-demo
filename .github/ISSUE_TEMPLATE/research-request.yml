@@ -1,0 +1,97 @@
+name: "📊 Research Request"
+description: "Request a new intelligence report curated by Copilot Coding Agent"
+title: "[Report]: "
+labels: ["report"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📊 New Intelligence Report Request
+
+        Describe what you'd like to research below. After submitting, **assign this issue to `@copilot`** to start the curation.
+
+        リサーチしたい内容を以下に記入してください。送信後、**Issueを`@copilot`に割り当て**てキュレーションを開始します。
+
+  - type: input
+    id: topic
+    attributes:
+      label: "🔍 Research Topic / リサーチトピック"
+      description: "What do you want to research? / 何について調べたいですか？"
+      placeholder: "例: 今週のMicrosoft公式ブログの要約 / This week's Microsoft Blog summary"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sources
+    attributes:
+      label: "📂 Information Sources / 情報ソース"
+      description: "Select the sources to check (multi-select) / チェックするソースを選択（複数可）"
+      multiple: true
+      options:
+        - "Official Microsoft Blog (blogs.microsoft.com)"
+        - "Microsoft AI Blog (microsoft.com/ai/blog)"
+        - "Azure Blog (azure.microsoft.com/blog)"
+        - "Microsoft Dev Blogs (devblogs.microsoft.com)"
+        - "Microsoft Security Blog"
+        - "News Center Japan (news.microsoft.com/ja-jp)"
+        - "Windows Blog (blogs.windows.com)"
+        - "Tech Community (techcommunity.microsoft.com)"
+        - "GitHub Blog (github.blog)"
+        - "GitHub Changelog (github.blog/changelog)"
+        - "GitHub Docs (docs.github.com)"
+        - "Other (specify in Additional Instructions)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: "🌐 Report Language / レポート言語"
+      description: "What language should the report be in? / レポートの言語は？"
+      options:
+        - "Auto (match source language / ソースに合わせる)"
+        - "English"
+        - "Japanese / 日本語"
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: detail-level
+    attributes:
+      label: "📊 Detail Level / 詳細レベル"
+      description: "How detailed should the report be? / どの程度詳細にしますか？"
+      options:
+        - "Brief — Key points only / 簡潔 — 要点のみ"
+        - "Standard — Summaries + analysis / 標準 — 要約＋分析"
+        - "Detailed — Deep analysis + quotes + comparisons / 詳細 — 深い分析＋引用＋比較"
+      default: 1
+    validations:
+      required: true
+
+  - type: textarea
+    id: instructions
+    attributes:
+      label: "💬 Additional Instructions / 追加の指示 (optional)"
+      description: "Any specific focus, comparisons, or context? / 特定のフォーカスや比較、文脈はありますか？"
+      placeholder: "例: 特にAI関連の記事にフォーカスしてください / Focus on AI-related articles"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: acknowledgment
+    attributes:
+      label: "✅ Confirmation / 確認"
+      options:
+        - label: "I understand this report will be published on GitHub Pages / このレポートがGitHub Pagesに公開されることを理解しています"
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📌 Next Step / 次のステップ
+        After submitting this issue, click **Assignees** (right sidebar) → type **`copilot`** → select it.
+
+        このIssueを送信した後、右サイドバーの**Assignees**をクリック → **`copilot`** と入力 → 選択してください。

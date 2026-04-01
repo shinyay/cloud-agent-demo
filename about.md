@@ -14,17 +14,13 @@ Project Miki is an intelligence dashboard curated by **GitHub Copilot Coding Age
 
 ### Step 1: Create a GitHub Issue
 
-Go to [**New Issue →**](https://github.com/shinyay/project-miki/issues/new) and describe what you want to research.
+Go to [**New Report →**](https://github.com/shinyay/project-miki/issues/new?template=research-request.yml) and fill out the structured form:
 
-**Example issue descriptions:**
-
-| Example | What You Get |
-|---------|-------------|
-| "Summarize this week's posts from the Official Microsoft Blog" | Summary of recent Microsoft Corp announcements |
-| "What's new in GitHub Copilot? Check the GitHub Blog and Changelog" | Latest Copilot features and updates |
-| "Microsoft AI Blog の最新記事をまとめてください" | AI strategy and Copilot updates (in Japanese) |
-| "Compare what Microsoft Security Blog and Azure Blog are saying about Zero Trust" | Cross-source thematic analysis |
-| "GitHub public roadmap で予定されている新機能を教えて" | Upcoming GitHub features from the roadmap |
+- **Research Topic** — What do you want to know?
+- **Information Sources** — Select which Microsoft/GitHub sources to check
+- **Report Language** — English, Japanese, or Auto
+- **Detail Level** — Brief, Standard, or Detailed
+- **Additional Instructions** — Any special focus or context
 
 ### Step 2: Assign to @copilot
 
