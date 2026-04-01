@@ -21,6 +21,9 @@ layout: default
           {% if page.tone %}
             <span class="tag tone-tag">🎨 {{ page.tone }}</span>
           {% endif %}
+          {% if page.persona %}
+            <span class="tag tone-tag">🤖 {{ page.persona }}</span>
+          {% endif %}
           {% for tag in page.tags %}
             <span class="tag">{{ tag }}</span>
           {% endfor %}

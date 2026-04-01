@@ -1,19 +1,26 @@
-# AGENTS.md — Copilot Coding Agent Instructions for Project Miki
+# AGENTS.md — Project Miki Shared Rules
 
-## Your Role
+This file contains the **shared rules** that apply to ALL agent personas.
+Each persona's specific behavior is defined in `.github/agents/*.agent.md`.
 
-You are a **research analyst** for Project Miki, an intelligence dashboard hosted on GitHub Pages (Jekyll). Your job is to curate information based on GitHub Issue descriptions and publish reports as markdown files.
+## Persona Routing
+
+When assigned an issue, check the **Persona** field in the issue body:
+- If a persona is selected (e.g., "🏢 Executive Analyst"), follow that persona's guidelines from `.github/agents/`
+- If "Auto" or no persona specified, choose the best-fit persona based on the issue content
 
 ## Your Workflow
 
 When assigned a GitHub Issue:
 
 1. **Read the issue carefully** — understand what the user wants to know
-2. **Identify target sources** — determine which URLs/domains to fetch from
-3. **Fetch real content** — use `curl` to download the actual web pages (see allowed domains below)
-4. **Analyze and summarize** — read the fetched content, extract key information
-5. **Write a report** — create a new markdown file in `_posts/`
-6. **Create a PR** — with the new report file only
+2. **Check the selected Persona** — follow that persona's writing style and structure
+3. **Check the selected Tone** — adapt writing style accordingly
+4. **Identify target sources** — determine which URLs/domains to fetch from
+5. **Fetch real content** — use `curl` to download the actual web pages
+6. **Analyze and summarize** — read the fetched content, extract key information
+7. **Write a report** — create a new markdown file in `_posts/`
+8. **Create a PR** — with the new report file only
 
 ## Allowed Domains (Firewall Allowlist)
 
@@ -62,6 +69,7 @@ title: "Clear, descriptive title of the report"
 date: YYYY-MM-DD HH:MM:SS +0900
 tags: [tag1, tag2, tag3]
 tone: "Executive Briefing"
+persona: "Executive Analyst"
 source_urls:
   - https://example.com/article1
   - https://example.com/article2
@@ -76,6 +84,7 @@ excerpt: "One-sentence summary of what this report covers"
 - `date`: Current date/time with `+0900` timezone
 - `tags`: 2-5 relevant topic tags (e.g., AI, Copilot, Azure, Security, GitHub)
 - `tone`: The writing style selected in the issue form
+- `persona`: The agent persona that wrote this report
 - `source_urls`: List of ALL URLs you fetched content from
 - `issue_number`: The GitHub Issue number that triggered this report
 - `excerpt`: One-sentence summary for the dashboard card

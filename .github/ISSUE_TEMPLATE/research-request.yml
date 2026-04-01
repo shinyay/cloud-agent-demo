@@ -21,6 +21,22 @@ body:
       required: true
 
   - type: dropdown
+    id: persona
+    attributes:
+      label: "🤖 Persona / ペルソナ"
+      description: "Which specialist should write the report? / どの専門家がレポートを作成しますか？"
+      options:
+        - "Auto — Best fit based on topic / 自動 — トピックに基づき最適を選択"
+        - "🏢 Executive Analyst — Strategic implications, action items / エグゼクティブ分析"
+        - "🔬 Technical Researcher — Specs, APIs, architecture / テクニカルリサーチ"
+        - "📰 News Curator — Broad coverage, many articles briefly / ニュースキュレーター"
+        - "🇯🇵 Japan Market Specialist — JP context, bilingual / 日本市場スペシャリスト"
+        - "🆚 Competitive Analyst — Cross-source comparison / 競合分析"
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
     id: detail-level
     attributes:
       label: "📊 Detail Level / 詳細レベル"
