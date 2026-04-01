@@ -37,9 +37,49 @@ permalink: /admin/
 
     <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius, 12px); padding: 24px; margin-bottom: 24px;">
       <h3 style="margin-bottom: 8px;">✨ Create New Design</h3>
-      <p style="color: var(--color-text-secondary); font-size: 14px; margin-bottom: 16px;">Describe the design. Coding Agent will rewrite CSS and layouts.</p>
-      <input type="text" id="design-name" placeholder="Design name (e.g., Dark Cyberpunk)" style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border, #ddd); border-radius: 8px; font-size: 15px; font-family: inherit; background: var(--color-bg, #f5f5f5); color: var(--color-text, #333); margin-bottom: 12px;">
-      <textarea id="design-description" rows="4" placeholder="Describe the design in detail..." style="width: 100%; padding: 12px 14px; border: 1px solid var(--color-border, #ddd); border-radius: 8px; font-size: 15px; font-family: inherit; background: var(--color-bg, #f5f5f5); color: var(--color-text, #333); resize: vertical; margin-bottom: 16px;"></textarea>
+      <p style="color: var(--color-text-secondary); font-size: 14px; margin-bottom: 16px;">Describe the look and feel you want. Don't worry about technical terms — just describe the mood, colors, or reference a brand you like!</p>
+
+      <!-- Collapsible examples -->
+      <details style="margin-bottom: 16px; background: var(--color-bg, #f5f5f5); border-radius: 8px; padding: 4px;">
+        <summary style="cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 14px; color: var(--color-primary, #0078D4);">📋 Example Instructions (click to expand, copy & paste!)</summary>
+        <div style="padding: 8px 14px 14px;">
+
+          <div style="margin-bottom: 12px; padding: 12px; background: var(--color-surface, #fff); border-radius: 8px; border: 1px solid var(--color-border, #eee);">
+            <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">🍎 Clean & Minimalist (Apple-style)</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); cursor: pointer;" onclick="useTemplate(this)">Make it clean and minimalist like Apple's website. Lots of white space. Subtle shadows instead of borders. Rounded corners. Light gray background. Use a simple, elegant font. The overall feeling should be calm and premium.</div>
+          </div>
+
+          <div style="margin-bottom: 12px; padding: 12px; background: var(--color-surface, #fff); border-radius: 8px; border: 1px solid var(--color-border, #eee);">
+            <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">🌙 Dark & Modern (Cyberpunk-style)</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); cursor: pointer;" onclick="useTemplate(this)">Dark background with neon accent colors (electric blue, purple, or green). Give it a futuristic, techy feel. Use a monospace font for headings. Add subtle glow effects on hover. Cards should feel like floating panels.</div>
+          </div>
+
+          <div style="margin-bottom: 12px; padding: 12px; background: var(--color-surface, #fff); border-radius: 8px; border: 1px solid var(--color-border, #eee);">
+            <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">🎌 Japanese Traditional (和風)</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); cursor: pointer;" onclick="useTemplate(this)">日本の伝統的な雰囲気にしてください。紺色（藍色）と白を基調に。和紙のような柔らかいテクスチャ感。見出しは明朝体風。全体的に落ち着いた上品な印象。ゴールドのアクセントカラーを少し入れてください。</div>
+          </div>
+
+          <div style="margin-bottom: 12px; padding: 12px; background: var(--color-surface, #fff); border-radius: 8px; border: 1px solid var(--color-border, #eee);">
+            <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">🌿 Warm & Friendly (Newsletter-style)</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); cursor: pointer;" onclick="useTemplate(this)">Warm and inviting, like a well-designed newsletter. Use earth tones — warm beige background, brown accents, green highlights. Serif font for headings to feel editorial. Cards should feel like magazine clippings. Cozy and readable.</div>
+          </div>
+
+          <div style="margin-bottom: 12px; padding: 12px; background: var(--color-surface, #fff); border-radius: 8px; border: 1px solid var(--color-border, #eee);">
+            <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">🔵 Corporate Professional</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); cursor: pointer;" onclick="useTemplate(this)">Professional and corporate. Navy blue and white color scheme. Clean, structured layout with clear hierarchy. Traditional serif headings with sans-serif body text. Feels trustworthy and authoritative. Suitable for sharing with executives.</div>
+          </div>
+
+          <div style="margin-bottom: 8px; padding: 12px; background: var(--color-surface, #fff); border-radius: 8px; border: 1px solid var(--color-border, #eee);">
+            <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px;">🎨 Color Change Only (keep layout)</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); cursor: pointer;" onclick="useTemplate(this)">Keep the current layout exactly as it is, but change the color palette to: primary color deep purple, accents in gold, dark mode background in deep charcoal. Don't change the card layout or navigation structure.</div>
+          </div>
+
+          <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">💡 Click any example to copy it to the description box below. Feel free to modify it!</p>
+        </div>
+      </details>
+
+      <input type="text" id="design-name" placeholder="Design name (e.g., Calm Minimalist, 和風モダン)" style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border, #ddd); border-radius: 8px; font-size: 15px; font-family: inherit; background: var(--color-bg, #f5f5f5); color: var(--color-text, #333); margin-bottom: 12px;">
+      <textarea id="design-description" rows="5" placeholder="Describe how you want the site to look and feel...&#10;&#10;You can describe:&#10;• A mood or feeling (calm, energetic, professional)&#10;• Colors you like (blue and white, dark with neon)&#10;• A brand or website you like (like Apple, like a newspaper)&#10;• What to keep or change (keep layout, change colors only)&#10;&#10;上のテンプレートからコピーして使うこともできます！" style="width: 100%; padding: 12px 14px; border: 1px solid var(--color-border, #ddd); border-radius: 8px; font-size: 15px; font-family: inherit; background: var(--color-bg, #f5f5f5); color: var(--color-text, #333); resize: vertical; margin-bottom: 16px;"></textarea>
       <button onclick="submitNewDesign()" style="padding: 12px 28px; background: var(--color-primary, #0078D4); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 15px; font-family: inherit;">🎨 Create Design Issue</button>
     </div>
 
@@ -84,6 +124,13 @@ permalink: /admin/
 </main>
 
 <script>
+function useTemplate(el) {
+  document.getElementById('design-description').value = el.textContent.trim();
+  document.getElementById('design-description').focus();
+  el.style.background = '#E8F5E9';
+  setTimeout(function() { el.style.background = ''; }, 1000);
+}
+
 function switchTab(tab) {
   document.getElementById('panel-design').style.display = tab === 'design' ? 'block' : 'none';
   document.getElementById('panel-agents').style.display = tab === 'agents' ? 'block' : 'none';
