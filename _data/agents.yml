@@ -40,3 +40,15 @@ agents:
     icon: "🎨"
     description: "Frontend developer and design systems specialist who creates beautiful, modern, responsive web designs."
     file: ".github/agents/design-specialist.agent.md"
+
+  - name: "Microsoft Specialist"
+    slug: "microsoft-specialist"
+    icon: "Ⓜ️"
+    description: "Domain expert with deep knowledge of Microsoft's products, strategy, and ecosystem. Positive and fact-based."
+    file: ".github/agents/microsoft-specialist.agent.md"
+
+  - name: "GitHub Specialist"
+    slug: "github-specialist"
+    icon: "🐙"
+    description: "Domain expert with deep knowledge of GitHub's platform, developer ecosystem, and open source. Developer-centric and fact-based."
+    file: ".github/agents/github-specialist.agent.md"

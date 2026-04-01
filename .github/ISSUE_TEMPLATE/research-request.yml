@@ -35,6 +35,8 @@ body:
         - "✍️ LinkedIn Draft Assistant — Ready-to-post LinkedIn drafts / LinkedIn投稿作成"
         - "🎨 Design Specialist — Frontend design, CSS, layouts / デザイン・フロントエンド"
         - "🛠️ Agent Creator — Create new custom agents / カスタムエージェント作成"
+        - "Ⓜ️ Microsoft Specialist — Deep Microsoft expertise, fact-based / Microsoft専門"
+        - "🐙 GitHub Specialist — Deep GitHub expertise, developer-centric / GitHub専門"
       default: 0
     validations:
       required: true
