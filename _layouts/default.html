@@ -4,31 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <h1 class="site-title">
-        <a href="{{ '/' | relative_url }}">📊 {{ site.title }}</a>
+        <a href="{{ '/' | relative_url }}">📊 Project Miki</a>
       </h1>
       <nav class="site-nav">
         <a href="{{ '/' | relative_url }}">Home</a>
         <a href="{{ '/about' | relative_url }}">About</a>
-        <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">+ New Report</a>
+        <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank" class="nav-cta">+ New Report</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    {{ content }}
-  </main>
+  {{ content }}
 
   <footer class="site-footer">
     <div class="container">
-      <p>Curated by <a href="https://github.com/features/copilot" target="_blank">GitHub Copilot Coding Agent</a> · 
-         <a href="https://github.com/shinyay/project-miki" target="_blank">View on GitHub</a></p>
+      <div class="footer-content">
+        <div>
+          <div class="footer-brand">📊 Project Miki</div>
+          <div class="footer-tagline">Intelligence dashboard curated by GitHub Copilot Coding Agent</div>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/shinyay/project-miki" target="_blank">GitHub</a>
+          <a href="{{ '/about' | relative_url }}">About</a>
+          <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">New Report</a>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <script>
+    // Dark mode toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Load saved theme
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        if (saved === 'dark') {
+          document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
