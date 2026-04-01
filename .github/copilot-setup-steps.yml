@@ -1,0 +1,6 @@
+# Copilot Coding Agent — Environment Setup
+# Minimal setup: the agent only writes markdown files to _posts/
+# No build tools needed (Jekyll builds on GitHub's side)
+
+steps:
+  - uses: actions/checkout@v4
