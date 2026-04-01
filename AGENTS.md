@@ -8,6 +8,15 @@ Each persona's specific behavior is defined in `.github/agents/*.agent.md`.
 When assigned an issue, check the **Persona** field in the issue body:
 - If a persona is selected (e.g., "🏢 Executive Analyst"), follow that persona's guidelines from `.github/agents/`
 - If "Auto" or no persona specified, choose the best-fit persona based on the issue content
+- If the Persona field contains `──` (a category separator line), the user accidentally selected a separator — **treat this as Auto mode** and choose the best persona based on the issue topic:
+  - Topic about Microsoft products/strategy → Ⓜ️ Microsoft Specialist
+  - Topic about GitHub platform/features → 🐙 GitHub Specialist
+  - Topic requesting a meeting briefing → 🏢 Executive Analyst
+  - Topic requesting technical details → 🔬 Technical Researcher
+  - Topic requesting broad news coverage → 📰 News Curator
+  - Topic about Japan market → 🇯🇵 Japan Market Specialist
+  - Topic requesting comparison → 🆚 Competitive Analyst
+  - Topic requesting a LinkedIn post → ✍️ LinkedIn Draft Assistant
 
 ## Your Workflow
 

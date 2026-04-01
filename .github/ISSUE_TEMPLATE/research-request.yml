@@ -26,17 +26,21 @@ body:
       label: "🤖 Persona / ペルソナ"
       description: "Which specialist should write the report? / どの専門家がレポートを作成しますか？"
       options:
-        - "Auto — Best fit based on topic / 自動 — トピックに基づき最適を選択"
+        - "🤖 Auto — Best fit based on topic / 自動 — トピックに基づき最適を選択"
+        - "── 🌐 Domain Specialists ──────────────────────"
+        - "Ⓜ️ Microsoft Specialist — Deep Microsoft expertise, fact-based / Microsoft専門"
+        - "🐙 GitHub Specialist — Deep GitHub expertise, developer-centric / GitHub専門"
+        - "── 📝 Format Specialists ──────────────────────"
         - "🏢 Executive Analyst — Strategic implications, action items / エグゼクティブ分析"
         - "🔬 Technical Researcher — Specs, APIs, architecture / テクニカルリサーチ"
         - "📰 News Curator — Broad coverage, many articles briefly / ニュースキュレーター"
         - "🇯🇵 Japan Market Specialist — JP context, bilingual / 日本市場スペシャリスト"
         - "🆚 Competitive Analyst — Cross-source comparison / 競合分析"
+        - "── ✍️ Content Creators ────────────────────────"
         - "✍️ LinkedIn Draft Assistant — Ready-to-post LinkedIn drafts / LinkedIn投稿作成"
+        - "── ⚙️ System ─────────────────────────────────"
         - "🎨 Design Specialist — Frontend design, CSS, layouts / デザイン・フロントエンド"
         - "🛠️ Agent Creator — Create new custom agents / カスタムエージェント作成"
-        - "Ⓜ️ Microsoft Specialist — Deep Microsoft expertise, fact-based / Microsoft専門"
-        - "🐙 GitHub Specialist — Deep GitHub expertise, developer-centric / GitHub専門"
       default: 0
     validations:
       required: true
