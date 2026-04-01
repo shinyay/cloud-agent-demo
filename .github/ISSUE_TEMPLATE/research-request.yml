@@ -1,6 +1,6 @@
 name: "📊 Research Request"
 description: "Request a new intelligence report curated by Copilot Coding Agent"
-title: "[Report]: "
+title: ""
 labels: ["report"]
 assignees: []
 body:
