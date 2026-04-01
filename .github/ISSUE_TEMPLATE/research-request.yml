@@ -49,27 +49,36 @@ body:
     validations:
       required: true
 
-  - type: dropdown
+  - type: checkboxes
     id: sources
     attributes:
       label: "📂 Information Sources / 情報ソース"
-      description: "Select the sources to check (multi-select) / チェックするソースを選択（複数可）"
-      multiple: true
+      description: "Uncheck sources you don't need / 不要なソースのチェックを外してください"
       options:
-        - "Official Microsoft Blog (blogs.microsoft.com)"
-        - "Microsoft AI Blog (microsoft.com/ai/blog)"
-        - "Azure Blog (azure.microsoft.com/blog)"
-        - "Microsoft Dev Blogs (devblogs.microsoft.com)"
-        - "Microsoft Security Blog"
-        - "News Center Japan (news.microsoft.com/ja-jp)"
-        - "Windows Blog (blogs.windows.com)"
-        - "Tech Community (techcommunity.microsoft.com)"
-        - "GitHub Blog (github.blog)"
-        - "GitHub Changelog (github.blog/changelog)"
-        - "GitHub Docs (docs.github.com)"
-        - "Other (specify in Additional Instructions)"
-    validations:
-      required: true
+        - label: "Official Microsoft Blog (blogs.microsoft.com)"
+          required: false
+        - label: "Microsoft AI Blog (microsoft.com/ai/blog)"
+          required: false
+        - label: "Azure Blog (azure.microsoft.com/blog)"
+          required: false
+        - label: "Microsoft Dev Blogs (devblogs.microsoft.com)"
+          required: false
+        - label: "Microsoft Security Blog"
+          required: false
+        - label: "News Center Japan (news.microsoft.com/ja-jp)"
+          required: false
+        - label: "Windows Blog (blogs.windows.com)"
+          required: false
+        - label: "Tech Community (techcommunity.microsoft.com)"
+          required: false
+        - label: "GitHub Blog (github.blog)"
+          required: false
+        - label: "GitHub Changelog (github.blog/changelog)"
+          required: false
+        - label: "GitHub Docs (docs.github.com)"
+          required: false
+        - label: "Other (specify in Additional Instructions)"
+          required: false
 
   - type: textarea
     id: instructions
