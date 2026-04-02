@@ -3,12 +3,12 @@ designs:
     slug: "microsoft-fluent"
     description: "Clean, professional design inspired by Microsoft Fluent Design System. Blue primary (#0078D4), glassmorphism navigation, gradient hero section, 2-column card grid with hover animations, dark mode support."
     created: "2026-04-01"
-    active: true
+    active: false
   - name: "Spring Atmosphere"
     slug: "spring-atmosphere"
     description: "春を感じることができるデザイン。Sakura pink primary (#D1729B), fresh spring greens (#7BAE7F), warm pastel backgrounds (#FFF7F3), cherry blossom accents, floating petal animation in hero, rounded pill-shaped CTA, dark mode with warm undertones."
     created: "2026-04-01"
-    active: false
+    active: true
   - name: "Simple is the Best"
     slug: "simple-is-the-best"
     description: "白基調で非常にシンプルなデザイン。White background, minimal borders, no gradients or glassmorphism, clean typography with Inter + Noto Sans JP, subtle hover effects, dark mode support."
