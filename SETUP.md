@@ -12,9 +12,10 @@
 2. [Step 1: Create Repository from Template / テンプレートからリポジトリを作成](#-step-1-create-repository-from-template--テンプレートからリポジトリを作成)
 3. [Step 2: Enable GitHub Pages / GitHub Pages を有効化](#-step-2-enable-github-pages--github-pages-を有効化)
 4. [Step 3: Enable Copilot Coding Agent / Copilot Coding Agent を有効化](#-step-3-enable-copilot-coding-agent--copilot-coding-agent-を有効化)
-5. [Step 4: Run Automated Setup / 自動セットアップを実行](#-step-4-run-automated-setup--自動セットアップを実行)
-6. [Step 5: Verify Your Dashboard / ダッシュボードを確認](#-step-5-verify-your-dashboard--ダッシュボードを確認)
-7. [Appendix: Manual Setup / 付録：手動セットアップ](#-appendix-manual-setup--付録手動セットアップ)
+5. [Step 4: Configure Firewall Allowlist / ファイアウォール許可リストを設定](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)
+6. [Step 5: Run Automated Setup / 自動セットアップを実行](#-step-5-run-automated-setup--自動セットアップを実行)
+7. [Step 6: Verify Your Dashboard / ダッシュボードを確認](#-step-6-verify-your-dashboard--ダッシュボードを確認)
+8. [Appendix: Manual Setup / 付録：手動セットアップ](#-appendix-manual-setup--付録手動セットアップ)
 
 ---
 
@@ -29,6 +30,22 @@ Before you begin, make sure you have the following:
 | **GitHub Account** | A GitHub account (free or paid)<br>GitHubアカウント（無料または有料） |
 | **GitHub Copilot Subscription** | Required for the Coding Agent to work. Copilot Individual, Business, or Enterprise plan.<br>Coding Agentを動作させるために必要です。Copilot Individual、Business、またはEnterpriseプランが必要です。 |
 | **Copilot Coding Agent Access** | Copilot Coding Agent must be available on your account or organization. Check your Copilot settings.<br>Copilot Coding Agentがアカウントまたは組織で利用可能であること。Copilot設定で確認してください。 |
+
+> **📢 What's NOT copied from the template / テンプレートからコピーされないもの:**
+>
+> When you create a repository from a template, all **files** are copied, but the following **settings** are NOT carried over. You must configure them manually (Steps 2-4):
+>
+> テンプレートからリポジトリを作成すると、すべての**ファイル**はコピーされますが、以下の**設定**は引き継がれません。手動で設定する必要があります（Step 2〜4）：
+>
+> | Setting / 設定 | Copied? / コピー？ | Action / 対応 |
+> |---|---|---|
+> | Files & workflows / ファイルとワークフロー | ✅ Yes | — |
+> | GitHub Pages settings / GitHub Pages設定 | ❌ No | Step 2 |
+> | Copilot Coding Agent / Copilot Coding Agent | ❌ No | Step 3 |
+> | Firewall allowlist / ファイアウォール許可リスト | ❌ No | Step 4 |
+> | Hardcoded URLs / ハードコードされたURL | ⚠️ Copied but wrong / コピーされるが不正 | Step 5 |
+> | Secrets & env variables / シークレットと環境変数 | N/A | Not used / 不使用 |
+> | Commit history / コミット履歴 | ❌ No | Not needed / 不要 |
 
 ---
 
@@ -144,7 +161,93 @@ Before you begin, make sure you have the following:
 
 ---
 
-## ⚙️ Step 4: Run Automated Setup / 自動セットアップを実行
+## 🔥 Step 4: Configure Firewall Allowlist / ファイアウォール許可リストを設定
+
+> **The Copilot Coding Agent has a built-in firewall that blocks network requests to domains not on the allowlist. Without this step, Copilot cannot fetch content from Microsoft and GitHub blogs to generate reports.**
+>
+> **Copilot Coding Agentには、許可リストにないドメインへのネットワークリクエストをブロックするファイアウォールが内蔵されています。このステップなしでは、CopilotはMicrosoftやGitHubのブログからコンテンツを取得してレポートを生成できません。**
+
+### English
+
+1. Go to your repository on GitHub
+2. Click **"Settings"** tab
+3. In the left sidebar, find **"Copilot"** section (under "Code and automation")
+4. Click **"Copilot"** → **"Coding agent"**
+5. Find the **"Firewall"** or **"Allowlist"** configuration section
+6. Add the following domains one by one:
+
+**Microsoft domains (10):**
+
+| Domain | Content |
+|--------|---------|
+| `blogs.microsoft.com` | Official Microsoft Blog, On the Issues |
+| `microsoft.com` | AI Blog, Security Blog |
+| `devblogs.microsoft.com` | Developer Blogs (.NET, VS Code, Azure SDK) |
+| `azure.microsoft.com` | Azure Blog |
+| `news.microsoft.com` | News Center (including Japan: /ja-jp/) |
+| `blogs.windows.com` | Windows Blog |
+| `developer.microsoft.com` | Microsoft for Developers |
+| `techcommunity.microsoft.com` | Tech Community Hub |
+| `tech.hub.ms` | Tech Hub |
+| `learn.microsoft.com` | Microsoft Learn |
+
+**GitHub domains (3):**
+
+| Domain | Content |
+|--------|---------|
+| `github.blog` | Official GitHub Blog + Changelog |
+| `docs.github.com` | GitHub Documentation |
+| `githubuniverse.com` | GitHub Universe Conference |
+
+7. Click **"Save"** to apply the allowlist
+
+> **💡 Tip:** You can add or remove domains later at any time. If you want Copilot to fetch from additional sources (e.g., your company's blog), add those domains here too.
+
+### 日本語
+
+1. GitHubでリポジトリにアクセス
+2. **「Settings」** タブをクリック
+3. 左サイドバーの **「Code and automation」** セクションにある **「Copilot」** をクリック
+4. **「Copilot」** → **「Coding agent」** をクリック
+5. **「Firewall」** または **「Allowlist」** の設定セクションを見つける
+6. 以下のドメインを1つずつ追加:
+
+**Microsoftドメイン（10個）:**
+
+| ドメイン | コンテンツ |
+|---------|-----------|
+| `blogs.microsoft.com` | Microsoft公式ブログ、On the Issues |
+| `microsoft.com` | AIブログ、セキュリティブログ |
+| `devblogs.microsoft.com` | 開発者ブログ（.NET、VS Code、Azure SDK） |
+| `azure.microsoft.com` | Azureブログ |
+| `news.microsoft.com` | ニュースセンター（日本語版: /ja-jp/ を含む） |
+| `blogs.windows.com` | Windowsブログ |
+| `developer.microsoft.com` | Microsoft for Developers |
+| `techcommunity.microsoft.com` | Tech Community Hub |
+| `tech.hub.ms` | Tech Hub |
+| `learn.microsoft.com` | Microsoft Learn |
+
+**GitHubドメイン（3個）:**
+
+| ドメイン | コンテンツ |
+|---------|-----------|
+| `github.blog` | GitHub公式ブログ + Changelog |
+| `docs.github.com` | GitHubドキュメント |
+| `githubuniverse.com` | GitHub Universeカンファレンス |
+
+7. **「Save」** をクリックして許可リストを適用
+
+> **💡 ヒント:** ドメインはいつでも追加・削除できます。Copilotに追加のソース（例：自社ブログ）からも取得させたい場合は、そのドメインもここに追加してください。
+
+> **⚠️ What happens without the allowlist? / 許可リストがない場合どうなるか？**
+>
+> Copilot will still be able to process issues and create report files, but all `curl` commands to fetch content will be **blocked by the firewall**. The resulting reports will lack real content and may contain only AI-generated summaries based on training data — not current information.
+>
+> Copilotは引き続きIssueを処理しレポートファイルを作成できますが、コンテンツを取得するすべての `curl` コマンドが**ファイアウォールによりブロック**されます。結果として生成されるレポートは最新のコンテンツではなく、トレーニングデータに基づくAI生成の要約のみとなります。
+
+---
+
+## ⚙️ Step 5: Run Automated Setup / 自動セットアップを実行
 
 > **This is where the magic happens! Copilot Coding Agent will automatically update all 20 hardcoded references in your repository.**
 >
@@ -213,7 +316,7 @@ Before you begin, make sure you have the following:
 
 ---
 
-## ✨ Step 5: Verify Your Dashboard / ダッシュボードを確認
+## ✨ Step 6: Verify Your Dashboard / ダッシュボードを確認
 
 ### English
 
@@ -479,3 +582,15 @@ git push
 - **再デプロイを待つ**: マージ後、GitHub Pagesの再ビルドに2〜3分かかります。
 - **ハードリフレッシュ**: Ctrl+Shift+R（Macの場合はCmd+Shift+R）でブラウザキャッシュをクリアしてください。
 - **手動確認**: Copilotが見落とした箇所がある場合は、上記の[手動セットアップ](#-appendix-manual-setup--付録手動セットアップ)セクションを使用してください。
+
+### Reports contain no real content / レポートに実際のコンテンツが含まれない
+
+- **Check the firewall allowlist**: Go to Settings → Copilot → Coding agent → Firewall. Make sure all 13 domains from [Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定) are listed.
+- **Check the PR comments**: If Copilot's `curl` requests were blocked, you may see warnings in the PR conversation mentioning blocked domains.
+- **Add missing domains**: If a specific source isn't working, add its domain to the allowlist and try again.
+
+---
+
+- **ファイアウォール許可リストを確認**: Settings → Copilot → Coding agent → Firewallに移動し、[Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)の13ドメインがすべてリストされていることを確認してください。
+- **PRコメントを確認**: Copilotの`curl`リクエストがブロックされた場合、PRのコメントにブロックされたドメインに関する警告が表示される場合があります。
+- **不足しているドメインを追加**: 特定のソースが機能しない場合は、そのドメインを許可リストに追加して再試行してください。
