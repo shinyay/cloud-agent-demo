@@ -19,7 +19,7 @@ permalink: /about/
     <ol class="step-list">
       <li>
         <strong>Create a GitHub Issue</strong><br>
-        Go to <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">New Report →</a> and fill out the structured form — research topic, persona (specialist), detail level, tone, language, information sources, and any additional instructions.
+        Go to <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" target="_blank">New Report →</a> and fill out the structured form — research topic, persona (specialist), detail level, tone, language, information sources, and any additional instructions.
       </li>
       <li>
         <strong>Assign to @copilot</strong><br>
@@ -166,7 +166,7 @@ permalink: /about/
     <ol class="step-list">
       <li>
         <strong>Issueを作成</strong><br>
-        <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">新しいIssue →</a> で調べたい内容を記述
+        <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" target="_blank">新しいIssue →</a> で調べたい内容を記述
       </li>
       <li>
         <strong>@copilotに割り当て</strong><br>

@@ -13,11 +13,11 @@ An intelligence dashboard powered by **GitHub Copilot Coding Agent**. Describe w
 4. Merge the PR → report appears on the dashboard
 ```
 
-**🌐 Dashboard:** [shinyay.github.io/project-miki](https://shinyay.github.io/project-miki/)
+**🌐 Dashboard:** [shinyay.github.io/cloud-agent-demo](https://shinyay.github.io/cloud-agent-demo/)
 
 ## Quick Start
 
-1. Go to [**Issues → New Issue**](https://github.com/shinyay/project-miki/issues/new?template=research-request.yml)
+1. Go to [**Issues → New Issue**](https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml)
 2. Fill in the structured form:
    - **Topic** — what you want to know
    - **Persona** — which AI specialist should write it (10 options)
@@ -72,7 +72,7 @@ Report visible on dashboard
 ## Project Structure
 
 ```
-project-miki/
+cloud-agent-demo/
 ├── _config.yml              ← Jekyll configuration
 ├── _layouts/
 │   ├── default.html         ← Dashboard layout (nav, header, footer)
@@ -99,7 +99,7 @@ project-miki/
 
 ## Admin Page
 
-Visit [/admin/](https://shinyay.github.io/project-miki/admin/) to:
+Visit [/admin/](https://shinyay.github.io/cloud-agent-demo/admin/) to:
 - 🎨 **Manage designs** — create new themes, switch between saved themes
 - 🤖 **Manage agents** — view registered agents, create new custom agents
 

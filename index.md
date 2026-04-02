@@ -25,7 +25,7 @@ title: Home
         <div class="hero-stat-label">Tone Styles</div>
       </div>
     </div>
-    <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank" class="hero-cta">✨ Request New Report</a>
+    <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" target="_blank" class="hero-cta">✨ Request New Report</a>
   </div>
 </section>
 
@@ -63,7 +63,7 @@ title: Home
         </ul>
         <div id="no-today" class="empty-state" style="display: none;">
           <h3>No reports today yet</h3>
-          <p><a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">Request a new report</a> to get started!</p>
+          <p><a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" target="_blank">Request a new report</a> to get started!</p>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ title: Home
   {% else %}
     <div class="empty-state">
       <h3>No reports yet</h3>
-      <p>Create a <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" target="_blank">new report request</a> and assign it to <code>@copilot</code>.</p>
+      <p>Create a <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" target="_blank">new report request</a> and assign it to <code>@copilot</code>.</p>
     </div>
   {% endif %}
 </main>

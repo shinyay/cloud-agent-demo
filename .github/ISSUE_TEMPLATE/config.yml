@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: "📖 About Project Miki"
-    url: "https://shinyay.github.io/project-miki/about/"
+    url: "https://shinyay.github.io/cloud-agent-demo/about/"
     about: "Learn how this dashboard works and see available information sources"
   - name: "📊 View Dashboard"
-    url: "https://shinyay.github.io/project-miki/"
+    url: "https://shinyay.github.io/cloud-agent-demo/"
     about: "Browse existing intelligence reports"

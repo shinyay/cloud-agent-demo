@@ -1,7 +1,7 @@
 title: "Project Miki — Intelligence Dashboard"
 description: "Curated intelligence reports powered by GitHub Copilot Coding Agent"
 url: "https://shinyay.github.io"
-baseurl: "/project-miki"
+baseurl: "/cloud-agent-demo"
 timezone: Asia/Tokyo
 
 permalink: /reports/:year/:month/:day/:title/

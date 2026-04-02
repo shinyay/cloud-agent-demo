@@ -146,12 +146,12 @@ function submitNewDesign() {
   if (!name || !desc) { alert('Please enter both name and description'); return; }
   var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
   var body = '## Design Request\n\n**Design Name:** ' + name + '\n**Description:**\n' + desc + '\n\n---\n\n### Instructions for Design Specialist Agent\n1. Create a complete new design based on the description above\n2. Rewrite `assets/css/style.css`\n3. Update `_layouts/default.html` and `_layouts/post.html` if needed\n4. Update `index.md` if dashboard layout changes needed\n5. Save the new CSS as `assets/css/themes/' + slug + '.css`\n6. Update `_data/designs.yml` — add new entry, set `active: true`, others `active: false`';
-  window.open('https://github.com/shinyay/project-miki/issues/new?title=' + encodeURIComponent('[Design] ' + name) + '&body=' + encodeURIComponent(body) + '&labels=design', '_blank');
+  window.open('https://github.com/shinyay/cloud-agent-demo/issues/new?title=' + encodeURIComponent('[Design] ' + name) + '&body=' + encodeURIComponent(body) + '&labels=design', '_blank');
 }
 
 function applyDesign(name, slug) {
   var body = '## Apply Saved Design\n\n**Design:** ' + name + '\n**Theme file:** `assets/css/themes/' + slug + '.css`\n\n---\n\n### Instructions for Design Specialist Agent\n1. Read saved CSS from `assets/css/themes/' + slug + '.css`\n2. Replace `assets/css/style.css` with the saved CSS\n3. Update `_data/designs.yml` — set `' + name + '` to `active: true`, all others `active: false`';
-  window.open('https://github.com/shinyay/project-miki/issues/new?title=' + encodeURIComponent('[Design] Apply: ' + name) + '&body=' + encodeURIComponent(body) + '&labels=design', '_blank');
+  window.open('https://github.com/shinyay/cloud-agent-demo/issues/new?title=' + encodeURIComponent('[Design] Apply: ' + name) + '&body=' + encodeURIComponent(body) + '&labels=design', '_blank');
 }
 
 function submitNewAgent() {
@@ -160,12 +160,12 @@ function submitNewAgent() {
   if (!name || !desc) { alert('Please enter both name and description'); return; }
   var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
   var body = '## New Custom Agent Request\n\n**Agent Name:** ' + name + '\n**Description:**\n' + desc + '\n\n---\n\n### Instructions for Agent Creator\nUse the 🛠️ Agent Creator persona (`.github/agents/agent-creator.agent.md`) to:\n1. Create `.github/agents/' + slug + '.agent.md` with full agent definition\n2. Add entry to `_data/agents.yml`\n3. Add to `.github/ISSUE_TEMPLATE/research-request.yml` Persona dropdown\n\nFollow the Agent Creator guidelines for structure, naming, and quality.';
-  window.open('https://github.com/shinyay/project-miki/issues/new?title=' + encodeURIComponent('[Agent] Create: ' + name) + '&body=' + encodeURIComponent(body) + '&labels=agent', '_blank');
+  window.open('https://github.com/shinyay/cloud-agent-demo/issues/new?title=' + encodeURIComponent('[Agent] Create: ' + name) + '&body=' + encodeURIComponent(body) + '&labels=agent', '_blank');
 }
 
 function deleteAgent(name, slug) {
   if (!confirm('Delete agent "' + name + '"?')) return;
   var body = '## Delete Custom Agent\n\n**Agent:** ' + name + '\n**File:** `.github/agents/' + slug + '.agent.md`\n\n---\n\n### Instructions\n1. Delete `.github/agents/' + slug + '.agent.md`\n2. Remove entry for "' + name + '" from `_data/agents.yml`\n3. Remove from `.github/ISSUE_TEMPLATE/research-request.yml` Persona dropdown';
-  window.open('https://github.com/shinyay/project-miki/issues/new?title=' + encodeURIComponent('[Agent] Delete: ' + name) + '&body=' + encodeURIComponent(body) + '&labels=agent', '_blank');
+  window.open('https://github.com/shinyay/cloud-agent-demo/issues/new?title=' + encodeURIComponent('[Agent] Delete: ' + name) + '&body=' + encodeURIComponent(body) + '&labels=agent', '_blank');
 }
 </script>
