@@ -217,3 +217,14 @@ The **Agent Creator** persona (`.github/agents/agent-creator.agent.md`) has addi
 - ✅ CAN modify `_data/agents.yml`
 - ✅ CAN modify `.github/ISSUE_TEMPLATE/research-request.yml`
 - ❌ Cannot modify `_posts/`, `AGENTS.md`, `assets/css/`, or `_layouts/`
+
+### Special Permission: Initial Setup (label: `setup`)
+When processing an issue with the **`setup`** label (created from the "🔧 Initial Setup" issue template), you have permission to modify configuration files to replace hardcoded owner/repo references:
+- ✅ CAN modify `_config.yml` — update `url` and `baseurl`
+- ✅ CAN modify `_layouts/default.html` and `_layouts/post.html` — update GitHub URLs
+- ✅ CAN modify `index.md`, `about.md`, `admin.md` — update issue creation links
+- ✅ CAN modify `README.md` — update dashboard and issue URLs
+- ✅ CAN modify `.github/ISSUE_TEMPLATE/config.yml` — update contact link URLs
+- ❌ Do NOT modify `SETUP.md` (uses placeholders intentionally)
+- ❌ Do NOT modify `.github/ISSUE_TEMPLATE/initial-setup.yml`
+- ❌ Do NOT modify files in `.github/agents/` or `AGENTS.md`

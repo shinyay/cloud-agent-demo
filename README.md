@@ -2,6 +2,8 @@
 
 An intelligence dashboard powered by **GitHub Copilot Coding Agent**. Describe what you want to research in a GitHub Issue, assign it to `@copilot`, and get a curated report published to GitHub Pages.
 
+> **📦 Using this as a template?** See the [**Setup Guide (SETUP.md)**](SETUP.md) for step-by-step instructions in English and Japanese.
+
 ## How It Works
 
 ```

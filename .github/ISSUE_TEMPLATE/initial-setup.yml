@@ -1,0 +1,86 @@
+name: "🔧 Initial Setup / 初期セットアップ"
+description: "Configure this repository for your account after creating from template / テンプレートから作成後、リポジトリを設定"
+title: "[Setup] Configure repository"
+labels: ["setup"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔧 Initial Repository Setup / 初期リポジトリセットアップ
+
+        This issue tells Copilot Coding Agent to update all hardcoded references in this repository to point to **your account and repository**.
+
+        このIssueは、Copilot Coding Agentにリポジトリ内のすべてのハードコードされた参照を**あなたのアカウントとリポジトリ**に更新するよう指示します。
+
+        ---
+
+        **After submitting this issue, assign it to `@copilot`:**
+        1. Click **Assignees** (right sidebar) ⚙️
+        2. Type **`copilot`**
+        3. Select **Copilot**
+
+        **このIssueを送信した後、`@copilot` に割り当ててください：**
+        1. 右サイドバーの **Assignees** ⚙️ をクリック
+        2. **`copilot`** と入力
+        3. **Copilot** を選択
+
+  - type: input
+    id: github_username
+    attributes:
+      label: "GitHub Username / GitHubユーザー名"
+      description: "Your GitHub username (e.g., octocat). This will replace 'shinyay' in all URLs. / あなたのGitHubユーザー名（例：octocat）。すべてのURLの 'shinyay' を置換します。"
+      placeholder: "octocat"
+    validations:
+      required: true
+
+  - type: input
+    id: repo_name
+    attributes:
+      label: "Repository Name / リポジトリ名"
+      description: "Your repository name (e.g., my-intel-dashboard). This will replace 'project-miki' in all URLs. / あなたのリポジトリ名（例：my-intel-dashboard）。すべてのURLの 'project-miki' を置換します。"
+      placeholder: "my-intel-dashboard"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: "Confirmation / 確認"
+      options:
+        - label: "I have enabled GitHub Pages (Settings → Pages → Deploy from branch: main) / GitHub Pagesを有効化済み（Settings → Pages → Deploy from branch: main）"
+          required: true
+        - label: "I have enabled Copilot Coding Agent (Settings → Copilot → Enabled) / Copilot Coding Agentを有効化済み（Settings → Copilot → Enabled）"
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ### 📋 Instructions for Copilot Coding Agent
+
+        **When assigned this issue, perform the following find-and-replace operations across the repository:**
+
+        **Replace the GitHub username** — In ALL of the files listed below, replace every occurrence of `shinyay` with the username provided above.
+
+        **Replace the repository name** — In ALL of the files listed below, replace every occurrence of `project-miki` with the repository name provided above.
+
+        **Files to modify (8 files, 20+ references):**
+
+        1. **`_config.yml`** — Update `url` (replace `shinyay` in `shinyay.github.io`) and `baseurl` (replace `project-miki`)
+        2. **`_layouts/default.html`** — Update 3 GitHub URLs in navigation and footer links
+        3. **`_layouts/post.html`** — Update 1 issue link URL in report header
+        4. **`index.md`** — Update 3 "New Report" CTA button URLs
+        5. **`about.md`** — Update 2 issue creation links (English and Japanese sections)
+        6. **`admin.md`** — Update 4 JavaScript `window.open()` URLs for design and agent management
+        7. **`README.md`** — Update 4 references: dashboard URL, issue link, project structure name, admin page URL
+        8. **`.github/ISSUE_TEMPLATE/config.yml`** — Update 2 contact link URLs
+
+        **Important rules:**
+        - Replace ALL occurrences of `shinyay` with the provided username
+        - Replace ALL occurrences of `project-miki` with the provided repository name
+        - Do NOT modify `SETUP.md` (it uses placeholders intentionally)
+        - Do NOT modify `.github/ISSUE_TEMPLATE/initial-setup.yml` (this template)
+        - Do NOT modify files in `.github/agents/` or `AGENTS.md` (no hardcoded URLs there)
+        - Create a single PR with all changes
+        - PR title should be: `chore: configure repository for [username]/[repo-name]`
