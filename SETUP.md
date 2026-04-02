@@ -1,8 +1,24 @@
 # 🚀 Setup Guide / セットアップガイド
 
-> **This guide helps you set up your own Intelligence Dashboard after creating a repository from the Project Miki template.**
+> **Setup guide for the Cloud Agent Demo Intelligence Dashboard (`shinyay/cloud-agent-demo`), created from the [Project Miki](https://github.com/shinyay/project-miki) template.**
 >
-> **このガイドは、Project Mikiテンプレートからリポジトリを作成した後、あなた専用のインテリジェンスダッシュボードをセットアップする手順を説明します。**
+> **[Project Miki](https://github.com/shinyay/project-miki) テンプレートから作成した Cloud Agent Demo インテリジェンスダッシュボード (`shinyay/cloud-agent-demo`) のセットアップガイドです。**
+
+---
+
+## 📊 Configuration Status / 設定状態
+
+> Last updated: 2025-04 / 最終更新: 2025年4月
+
+| Setting / 設定 | Status / 状態 | Notes / 備考 |
+|---|---|---|
+| GitHub Pages | ✅ Configured | [shinyay.github.io/cloud-agent-demo](https://shinyay.github.io/cloud-agent-demo/) |
+| Copilot Cloud Agent | ✅ Enabled | All safety toggles ON |
+| Firewall (Recommended allowlist) | ✅ Enabled | Built-in recommended domains active |
+| Firewall (Custom allowlist — UI) | ⚠️ Pending | 13 domains need to be added via UI |
+| Firewall (Actions variable) | ✅ Set | `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS` configured |
+| URL replacements | ✅ Done | All `project-miki` → `cloud-agent-demo` |
+| Auto-title workflow | ✅ Active | `.github/workflows/auto-title.yml` |
 
 ---
 
@@ -11,7 +27,7 @@
 1. [Prerequisites / 前提条件](#-prerequisites--前提条件)
 2. [Step 1: Create Repository from Template / テンプレートからリポジトリを作成](#-step-1-create-repository-from-template--テンプレートからリポジトリを作成)
 3. [Step 2: Enable GitHub Pages / GitHub Pages を有効化](#-step-2-enable-github-pages--github-pages-を有効化)
-4. [Step 3: Enable Copilot Coding Agent / Copilot Coding Agent を有効化](#-step-3-enable-copilot-coding-agent--copilot-coding-agent-を有効化)
+4. [Step 3: Enable Copilot Cloud Agent / Copilot Cloud Agent を有効化](#-step-3-enable-copilot-cloud-agent--copilot-cloud-agent-を有効化)
 5. [Step 4: Configure Firewall Allowlist / ファイアウォール許可リストを設定](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)
 6. [Step 5: Run Automated Setup / 自動セットアップを実行](#-step-5-run-automated-setup--自動セットアップを実行)
 7. [Step 6: Verify Your Dashboard / ダッシュボードを確認](#-step-6-verify-your-dashboard--ダッシュボードを確認)
@@ -28,8 +44,8 @@ Before you begin, make sure you have the following:
 | Requirement / 要件 | Description / 説明 |
 |---|---|
 | **GitHub Account** | A GitHub account (free or paid)<br>GitHubアカウント（無料または有料） |
-| **GitHub Copilot Subscription** | Required for the Coding Agent to work. Copilot Individual, Business, or Enterprise plan.<br>Coding Agentを動作させるために必要です。Copilot Individual、Business、またはEnterpriseプランが必要です。 |
-| **Copilot Coding Agent Access** | Copilot Coding Agent must be available on your account or organization. Check your Copilot settings.<br>Copilot Coding Agentがアカウントまたは組織で利用可能であること。Copilot設定で確認してください。 |
+| **GitHub Copilot Subscription** | Required for the Cloud Agent to work. Copilot Individual, Business, or Enterprise plan.<br>Cloud Agentを動作させるために必要です。Copilot Individual、Business、またはEnterpriseプランが必要です。 |
+| **Copilot Cloud Agent Access** | Copilot Cloud Agent must be available on your account or organization. Check your Copilot settings.<br>Copilot Cloud Agentがアカウントまたは組織で利用可能であること。Copilot設定で確認してください。 |
 
 > **📢 What's NOT copied from the template / テンプレートからコピーされないもの:**
 >
@@ -41,7 +57,7 @@ Before you begin, make sure you have the following:
 > |---|---|---|
 > | Files & workflows / ファイルとワークフロー | ✅ Yes | — |
 > | GitHub Pages settings / GitHub Pages設定 | ❌ No | Step 2 |
-> | Copilot Coding Agent / Copilot Coding Agent | ❌ No | Step 3 |
+> | Copilot Cloud Agent / Copilot Cloud Agent | ❌ No | Step 3 |
 > | Firewall allowlist / ファイアウォール許可リスト | ❌ No | Step 4 |
 > | Hardcoded URLs / ハードコードされたURL | ⚠️ Copied but wrong / コピーされるが不正 | Step 5 |
 > | Secrets & env variables / シークレットと環境変数 | N/A | Not used / 不使用 |
@@ -123,7 +139,7 @@ Before you begin, make sure you have the following:
 
 ---
 
-## 🤖 Step 3: Enable Copilot Coding Agent / Copilot Coding Agent を有効化
+## 🤖 Step 3: Enable Copilot Cloud Agent / Copilot Cloud Agent を有効化
 
 > **This step must be done manually in the GitHub UI. Copilot cannot enable itself.**
 >
@@ -134,14 +150,14 @@ Before you begin, make sure you have the following:
 1. Go to your new repository on GitHub
 2. Click **"Settings"** tab
 3. In the left sidebar, find **"Copilot"** section (under "Code and automation")
-4. Click **"Copilot"**
-5. Find **"Copilot coding agent"** (or "Copilot in GitHub Actions")
-6. Toggle it to **"Enabled"**
-7. If prompted about permissions, accept the default permissions
+4. Click **"Copilot"** → **"Cloud agent"**
+5. You'll see the **"Copilot cloud agent"** settings page with several toggles
+6. Make sure the main toggle at the top is set to **"Enabled"**
+7. Recommended: Enable all safety features (Firewall, CodeQL analysis, Secret scanning, etc.)
 
 **If you don't see the Copilot section:**
 - Make sure you have a Copilot subscription (Individual, Business, or Enterprise)
-- If you're in an organization, the org admin may need to enable Copilot Coding Agent at the organization level first
+- If you're in an organization, the org admin may need to enable Copilot Cloud Agent at the organization level first
 - Check [GitHub Copilot documentation](https://docs.github.com/en/copilot) for the latest setup instructions
 
 ### 日本語
@@ -149,30 +165,30 @@ Before you begin, make sure you have the following:
 1. GitHubで新しいリポジトリにアクセス
 2. **「Settings」** タブをクリック
 3. 左サイドバーの **「Code and automation」** セクションにある **「Copilot」** をクリック
-4. **「Copilot」** をクリック
-5. **「Copilot coding agent」**（または「Copilot in GitHub Actions」）を見つける
-6. **「Enabled」** に切り替える
-7. 権限についてプロンプトが表示された場合、デフォルトの権限を承認する
+4. **「Copilot」** → **「Cloud agent」** をクリック
+5. **「Copilot cloud agent」** の設定ページにいくつかのトグルが表示されます
+6. ページ上部のメイントグルを **「Enabled」** に設定する
+7. 推奨: すべての安全機能（Firewall、CodeQL分析、Secret scanning など）を有効にする
 
 **Copilotセクションが表示されない場合:**
 - Copilotサブスクリプション（Individual、Business、またはEnterprise）があることを確認してください
-- 組織アカウントの場合、組織管理者が先に組織レベルでCopilot Coding Agentを有効化する必要がある場合があります
+- 組織アカウントの場合、組織管理者が先に組織レベルでCopilot Cloud Agentを有効化する必要がある場合があります
 - 最新のセットアップ手順は[GitHub Copilotドキュメント](https://docs.github.com/ja/copilot)を参照してください
 
 ---
 
 ## 🔥 Step 4: Configure Firewall Allowlist / ファイアウォール許可リストを設定
 
-> **The Copilot Coding Agent has a built-in firewall that blocks network requests to domains not on the allowlist. Without this step, Copilot cannot fetch content from Microsoft and GitHub blogs to generate reports.**
+> **The Copilot Cloud Agent has a built-in firewall that blocks network requests to domains not on the allowlist. Without this step, Copilot cannot fetch content from Microsoft and GitHub blogs to generate reports.**
 >
-> **Copilot Coding Agentには、許可リストにないドメインへのネットワークリクエストをブロックするファイアウォールが内蔵されています。このステップなしでは、CopilotはMicrosoftやGitHubのブログからコンテンツを取得してレポートを生成できません。**
+> **Copilot Cloud Agentには、許可リストにないドメインへのネットワークリクエストをブロックするファイアウォールが内蔵されています。このステップなしでは、CopilotはMicrosoftやGitHubのブログからコンテンツを取得してレポートを生成できません。**
 
 ### English
 
 1. Go to your repository on GitHub
 2. Click **"Settings"** tab
 3. In the left sidebar, find **"Copilot"** section (under "Code and automation")
-4. Click **"Copilot"** → **"Coding agent"**
+4. Click **"Copilot"** → **"Cloud agent"**
 5. Find the **"Firewall"** or **"Allowlist"** configuration section
 6. Add the following domains one by one:
 
@@ -201,6 +217,40 @@ Before you begin, make sure you have the following:
 
 7. Click **"Save"** to apply the allowlist
 
+### Alternative: Actions Variable Method / Actions変数を使用する方法
+
+You can also configure the firewall allowlist using a repository Actions variable. This is useful for automation or if you prefer CLI setup.
+
+Actions変数を使用してファイアウォール許可リストを設定することもできます。自動化やCLIでのセットアップを好む場合に便利です。
+
+**Variable name:** `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS`
+
+**Value** (comma-separated list of all domains):
+
+```
+blogs.microsoft.com,microsoft.com,devblogs.microsoft.com,azure.microsoft.com,news.microsoft.com,blogs.windows.com,developer.microsoft.com,techcommunity.microsoft.com,tech.hub.ms,learn.microsoft.com,github.blog,github.com,docs.github.com,githubuniverse.com
+```
+
+**Using GitHub CLI:**
+
+```bash
+gh variable set COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS \
+  --body "blogs.microsoft.com,microsoft.com,devblogs.microsoft.com,azure.microsoft.com,news.microsoft.com,blogs.windows.com,developer.microsoft.com,techcommunity.microsoft.com,tech.hub.ms,learn.microsoft.com,github.blog,github.com,docs.github.com,githubuniverse.com"
+```
+
+**Using GitHub UI:**
+
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Click the **"Variables"** tab
+3. Click **"New repository variable"**
+4. Name: `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS`
+5. Value: paste the comma-separated list above
+6. Click **"Add variable"**
+
+> **💡 Note:** Both the UI Custom allowlist and the Actions variable work together. The Actions variable adds domains to the allowlist automatically when Copilot runs in GitHub Actions.
+>
+> **💡 注:** UIのカスタム許可リストとActions変数は併用できます。Actions変数は、CopilotがGitHub Actionsで実行される際に自動的にドメインを許可リストに追加します。
+
 > **💡 Tip:** You can add or remove domains later at any time. If you want Copilot to fetch from additional sources (e.g., your company's blog), add those domains here too.
 
 ### 日本語
@@ -208,7 +258,7 @@ Before you begin, make sure you have the following:
 1. GitHubでリポジトリにアクセス
 2. **「Settings」** タブをクリック
 3. 左サイドバーの **「Code and automation」** セクションにある **「Copilot」** をクリック
-4. **「Copilot」** → **「Coding agent」** をクリック
+4. **「Copilot」** → **「Cloud agent」** をクリック
 5. **「Firewall」** または **「Allowlist」** の設定セクションを見つける
 6. 以下のドメインを1つずつ追加:
 
@@ -249,9 +299,15 @@ Before you begin, make sure you have the following:
 
 ## ⚙️ Step 5: Run Automated Setup / 自動セットアップを実行
 
-> **This is where the magic happens! Copilot Coding Agent will automatically update all 20 hardcoded references in your repository.**
+> **This is where the magic happens! Copilot Cloud Agent will automatically update all 20 hardcoded references in your repository.**
 >
-> **ここが本番です！Copilot Coding Agentがリポジトリ内の20箇所のハードコードされた参照を自動的に更新します。**
+> **ここが本番です！Copilot Cloud Agentがリポジトリ内の20箇所のハードコードされた参照を自動的に更新します。**
+>
+> **✅ Already completed for this repository / このリポジトリでは完了済み:**
+>
+> All URL replacements have already been applied to `cloud-agent-demo`. The information below is kept for reference.
+>
+> すべてのURL置換は `cloud-agent-demo` に適用済みです。以下は参考情報として残しています。
 
 ### English
 
@@ -558,15 +614,15 @@ git push
 ### Copilot doesn't respond to the setup issue / Copilotがセットアップissueに反応しない
 
 - **Check assignment**: Make sure the issue is assigned to `Copilot` (not a human user named "copilot").
-- **Check Copilot is enabled**: Settings → Copilot → Coding agent should be "Enabled".
-- **Check organization policy**: If in an org, Copilot Coding Agent may need to be enabled at the org level.
+- **Check Copilot is enabled**: Settings → Copilot → Cloud agent should be "Enabled".
+- **Check organization policy**: If in an org, Copilot Cloud Agent may need to be enabled at the org level.
 - **Retry**: Sometimes it takes a minute. If nothing happens after 5 minutes, unassign and re-assign @copilot.
 
 ---
 
 - **割り当てを確認**: Issueが `Copilot`（「copilot」という名前の人間のユーザーではなく）に割り当てられていることを確認してください。
-- **Copilotが有効か確認**: Settings → Copilot → Coding agentが「Enabled」であること。
-- **組織ポリシーを確認**: 組織アカウントの場合、Copilot Coding Agentが組織レベルで有効化されている必要がある場合があります。
+- **Copilotが有効か確認**: Settings → Copilot → Cloud agentが「Enabled」であること。
+- **組織ポリシーを確認**: 組織アカウントの場合、Copilot Cloud Agentが組織レベルで有効化されている必要がある場合があります。
 - **再試行**: 反応するまで1分ほどかかる場合があります。5分経っても何も起きない場合は、@copilotの割り当てを解除して再度割り当ててください。
 
 ### Links still point to the original repository / リンクがまだ元のリポジトリを指している
@@ -585,12 +641,12 @@ git push
 
 ### Reports contain no real content / レポートに実際のコンテンツが含まれない
 
-- **Check the firewall allowlist**: Go to Settings → Copilot → Coding agent → Firewall. Make sure all 13 domains from [Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定) are listed.
+- **Check the firewall allowlist**: Go to Settings → Copilot → Cloud agent → Firewall. Make sure all 13 domains from [Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定) are listed.
 - **Check the PR comments**: If Copilot's `curl` requests were blocked, you may see warnings in the PR conversation mentioning blocked domains.
 - **Add missing domains**: If a specific source isn't working, add its domain to the allowlist and try again.
 
 ---
 
-- **ファイアウォール許可リストを確認**: Settings → Copilot → Coding agent → Firewallに移動し、[Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)の13ドメインがすべてリストされていることを確認してください。
+- **ファイアウォール許可リストを確認**: Settings → Copilot → Cloud agent → Firewallに移動し、[Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)の13ドメインがすべてリストされていることを確認してください。
 - **PRコメントを確認**: Copilotの`curl`リクエストがブロックされた場合、PRのコメントにブロックされたドメインに関する警告が表示される場合があります。
 - **不足しているドメインを追加**: 特定のソースが機能しない場合は、そのドメインを許可リストに追加して再試行してください。
