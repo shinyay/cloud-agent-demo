@@ -13,6 +13,10 @@ title: Home
         <div class="hero-stat-label">Reports</div>
       </div>
       <div class="hero-stat">
+        <div class="hero-stat-number">{{ site.data.agents.agents.size }}</div>
+        <div class="hero-stat-label">Agents</div>
+      </div>
+      <div class="hero-stat">
         <div class="hero-stat-number">13</div>
         <div class="hero-stat-label">Sources</div>
       </div>

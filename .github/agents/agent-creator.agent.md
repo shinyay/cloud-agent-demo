@@ -131,10 +131,12 @@ Add to `.github/ISSUE_TEMPLATE/research-request.yml` in the Persona dropdown:
 ## Existing Agents (Check Before Creating)
 
 Before creating a new agent, verify it doesn't overlap with:
-- 🏢 Executive Analyst — strategic implications
-- 🔬 Technical Researcher — specs, APIs
-- 📰 News Curator — broad news coverage
-- 🇯🇵 Japan Market Specialist — JP context
-- 🆚 Competitive Analyst — cross-source comparison
-- ✍️ LinkedIn Draft Assistant — LinkedIn posts
-- 🎨 Design Specialist — frontend design
+- Ⓜ️ Microsoft Specialist — deep Microsoft domain expertise, product portfolio, strategy
+- 🐙 GitHub Specialist — deep GitHub domain expertise, developer ecosystem
+- 🏢 Executive Analyst — strategic implications, action items for C-suite
+- 🔬 Technical Researcher — specs, APIs, architecture, breaking changes
+- 📰 News Curator — broad news coverage, many articles briefly
+- 🇯🇵 Japan Market Specialist — JP context, bilingual, Japan market relevance
+- 🆚 Competitive Analyst — cross-source comparison, competitive positioning
+- ✍️ LinkedIn Draft Assistant — LinkedIn posts with hooks, CTAs, hashtags
+- 🎨 Design Specialist — frontend design, CSS, layouts

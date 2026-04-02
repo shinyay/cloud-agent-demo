@@ -4,8 +4,8 @@ designs:
     description: "Clean, professional design inspired by Microsoft Fluent Design System. Blue primary (#0078D4), glassmorphism navigation, gradient hero section, 2-column card grid with hover animations, dark mode support."
     created: "2026-04-01"
     active: true
-  - name: "Spring Atomoshphere"
-    slug: "spring-atomoshphere"
+  - name: "Spring Atmosphere"
+    slug: "spring-atmosphere"
     description: "春を感じることができるデザイン。Sakura pink primary (#D1729B), fresh spring greens (#7BAE7F), warm pastel backgrounds (#FFF7F3), cherry blossom accents, floating petal animation in hero, rounded pill-shaped CTA, dark mode with warm undertones."
     created: "2026-04-01"
     active: false

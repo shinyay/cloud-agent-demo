@@ -5,7 +5,7 @@ An intelligence dashboard powered by **GitHub Copilot Coding Agent**. Describe w
 ## How It Works
 
 ```
-1. Create a GitHub Issue → describe what you want to know
+1. Create a GitHub Issue → select persona, tone, sources
 2. Assign to @copilot
 3. Copilot fetches content, summarizes, writes a report
 4. Merge the PR → report appears on the dashboard
@@ -15,14 +15,30 @@ An intelligence dashboard powered by **GitHub Copilot Coding Agent**. Describe w
 
 ## Quick Start
 
-1. Go to [**Issues → New Issue**](https://github.com/shinyay/project-miki/issues/new)
-2. Write what you want to research, for example:
-   - "Summarize this week's Official Microsoft Blog posts"
-   - "GitHub Copilot の最新アップデートをまとめて"
-   - "What's new in Azure AI this month?"
+1. Go to [**Issues → New Issue**](https://github.com/shinyay/project-miki/issues/new?template=research-request.yml)
+2. Fill in the structured form:
+   - **Topic** — what you want to know
+   - **Persona** — which AI specialist should write it (10 options)
+   - **Tone** — writing style (7 options: Executive Briefing, Journalistic, Analytical, etc.)
+   - **Language** — Japanese, English, or bilingual
 3. Assign to **@copilot** (Assignees → type "copilot")
 4. Wait 5-10 minutes for the PR
 5. Merge → dashboard updates automatically
+
+## Agent Personas (10)
+
+| Persona | Description |
+|---------|-------------|
+| 🤖 Auto | Automatically picks the best-fit persona |
+| Ⓜ️ Microsoft Specialist | Deep Microsoft domain expertise |
+| 🐙 GitHub Specialist | Deep GitHub/developer ecosystem expertise |
+| 🏢 Executive Analyst | Strategic implications and action items |
+| 🔬 Technical Researcher | Specs, APIs, architecture details |
+| 📰 News Curator | Broad coverage, many articles briefly |
+| 🇯🇵 Japan Market Specialist | Bilingual, Japan market context |
+| 🆚 Competitive Analyst | Cross-source comparison |
+| ✍️ LinkedIn Draft Assistant | Ready-to-post LinkedIn drafts |
+| 🎨 Design Specialist | Frontend design, CSS, layouts |
 
 ## Available Sources
 
@@ -40,7 +56,7 @@ GitHub Issue (user writes research request)
     ↓
 @copilot assigned (Coding Agent activates)
     ↓
-Agent fetches content from allowed domains via curl
+Agent fetches content via RSS feeds + HTML from allowed domains
     ↓
 Agent writes _posts/YYYY-MM-DD-HH-MM-slug.md
     ↓
@@ -55,20 +71,35 @@ Report visible on dashboard
 
 ```
 project-miki/
-├── _config.yml          ← Jekyll configuration
+├── _config.yml              ← Jekyll configuration
 ├── _layouts/
-│   ├── default.html     ← Dashboard layout
-│   └── post.html        ← Report layout
-├── _posts/              ← Reports (written by Copilot)
+│   ├── default.html         ← Dashboard layout (nav, header, footer)
+│   └── post.html            ← Report layout (progress bar, tags, sources)
+├── _posts/                  ← Reports (written by Copilot)
 │   └── YYYY-MM-DD-HH-MM-slug.md
-├── assets/css/style.css ← Styling
-├── index.md             ← Dashboard home (auto-lists reports)
-├── about.md             ← Usage guide + source list
-├── AGENTS.md            ← Instructions for Coding Agent
+├── assets/css/
+│   ├── style.css            ← Main stylesheet (dark mode, glassmorphism)
+│   └── themes/              ← Saved design themes
+├── _data/
+│   ├── agents.yml           ← Agent registry
+│   └── designs.yml          ← Design theme registry
 ├── .github/
-│   └── copilot-setup-steps.yml
+│   ├── agents/              ← Custom agent definitions (*.agent.md)
+│   ├── ISSUE_TEMPLATE/      ← Report request form
+│   └── workflows/           ← Auto-title workflow
+├── index.md                 ← Dashboard home
+├── about.md                 ← Usage guide + source list
+├── archive.md               ← Full report archive
+├── admin.md                 ← Admin: design & agent management
+├── AGENTS.md                ← Instructions for Coding Agent
 └── README.md
 ```
+
+## Admin Page
+
+Visit [/admin/](https://shinyay.github.io/project-miki/admin/) to:
+- 🎨 **Manage designs** — create new themes, switch between saved themes
+- 🤖 **Manage agents** — view registered agents, create new custom agents
 
 ## License
 

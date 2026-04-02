@@ -61,7 +61,15 @@ You can fetch content from these domains:
 _posts/YYYY-MM-DD-HH-MM-descriptive-slug.md
 ```
 
-Use the current date and time (JST / UTC+9). The slug should be a short, descriptive, lowercase, hyphenated summary of the topic.
+Use the current date and time in **JST (UTC+9)**. To get the current JST time in bash:
+
+```bash
+date -u -d '+9 hours' '+%Y-%m-%d %H:%M'  # Linux
+# or
+TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M'     # if timezone is set
+```
+
+The slug should be a short, descriptive, lowercase, hyphenated summary of the topic.
 
 **Examples:**
 - `_posts/2026-04-01-08-00-microsoft-blog-weekly-summary.md`
@@ -100,6 +108,8 @@ excerpt: "One-sentence summary of what this report covers"
 - `excerpt`: One-sentence summary for the dashboard card
 
 ### Report Body Structure
+
+> **Note:** Each persona has its own specific report structure defined in its `.agent.md` file. Always use the structure from your persona's file. The generic structure below is only a fallback when no persona-specific template applies.
 
 ```markdown
 ## Executive Summary
@@ -144,18 +154,35 @@ The issue form includes a **Tone** selection. Adapt your writing style according
 
 ## How to Fetch Content
 
-Use `curl` to fetch web pages, then read and analyze the content:
+Use `curl` (or the `web_fetch` tool if available) to fetch web pages, then read and analyze the content:
 
 ```bash
 # Fetch a blog page
 curl -s "https://blogs.microsoft.com/" > /tmp/ms-blog.html
 
-# Fetch an RSS feed
+# Fetch an RSS feed (PREFERRED for recent articles — much cleaner than HTML)
 curl -s "https://blogs.microsoft.com/feed/" > /tmp/ms-feed.xml
 
 # Fetch GitHub changelog
 curl -s "https://github.blog/changelog/" > /tmp/gh-changelog.html
 ```
+
+### RSS / Atom Feeds (Recommended for Recent Content)
+
+RSS feeds are **much more efficient** than scraping HTML pages. Use them whenever you need recent articles:
+
+| Source | RSS Feed URL |
+|--------|-------------|
+| Official Microsoft Blog | `https://blogs.microsoft.com/feed/` |
+| Microsoft AI Blog | `https://blogs.microsoft.com/ai/feed/` |
+| Azure Blog | `https://azure.microsoft.com/en-us/blog/feed/` |
+| Microsoft Dev Blogs | `https://devblogs.microsoft.com/feed/` |
+| Microsoft Security Blog | `https://www.microsoft.com/en-us/security/blog/feed/` |
+| GitHub Blog | `https://github.blog/feed/` |
+| GitHub Changelog | `https://github.blog/changelog/feed/` |
+| News Center Japan | `https://news.microsoft.com/ja-jp/feed/` |
+
+RSS feeds give you clean titles, dates, summaries, and URLs without parsing HTML. Always prefer them when doing "recent news" or "this week's updates" requests.
 
 Read the downloaded content, extract the relevant information, and write your report.
 
@@ -169,11 +196,11 @@ Read the downloaded content, extract the relevant information, and write your re
 - ✅ Use the correct filename format: `_posts/YYYY-MM-DD-HH-MM-slug.md`
 
 ### You must NOT:
-- ❌ Modify ANY existing files (no changes to `_posts/`, `_config.yml`, `about.md`)
-- ❌ Create files outside of `_posts/` (except Design Specialist — see below)
+- ❌ Modify or delete EXISTING files in `_posts/` — only CREATE new ones
+- ❌ Modify `_config.yml`, `about.md`, `_layouts/`, `index.md`, `assets/css/`, or `AGENTS.md`
+- ❌ Create files outside of `_posts/` (except Design Specialist and Agent Creator — see below)
 - ❌ Commit secrets, tokens, or credentials
 - ❌ Make up or fabricate information not found in the fetched content
-- ❌ Modify this AGENTS.md file
 
 ### Special Permission: Design Specialist Agent
 The **Design Specialist** persona (`.github/agents/design-specialist.agent.md`) has additional permissions:
@@ -183,3 +210,10 @@ The **Design Specialist** persona (`.github/agents/design-specialist.agent.md`) 
 - ✅ CAN create/modify files in `assets/css/themes/`
 - ✅ CAN modify `_data/designs.yml`
 - ❌ Cannot modify `_posts/`, `AGENTS.md`, `about.md`, `.github/ISSUE_TEMPLATE/`
+
+### Special Permission: Agent Creator
+The **Agent Creator** persona (`.github/agents/agent-creator.agent.md`) has additional permissions:
+- ✅ CAN create files in `.github/agents/`
+- ✅ CAN modify `_data/agents.yml`
+- ✅ CAN modify `.github/ISSUE_TEMPLATE/research-request.yml`
+- ❌ Cannot modify `_posts/`, `AGENTS.md`, `assets/css/`, or `_layouts/`
