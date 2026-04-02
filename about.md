@@ -17,9 +17,11 @@ Project Miki is an intelligence dashboard curated by **GitHub Copilot Coding Age
 Go to [**New Report →**](https://github.com/shinyay/project-miki/issues/new?template=research-request.yml) and fill out the structured form:
 
 - **Research Topic** — What do you want to know?
-- **Information Sources** — Select which Microsoft/GitHub sources to check
-- **Report Language** — English, Japanese, or Auto
+- **Persona** — Which specialist should write the report? (Microsoft Specialist, GitHub Specialist, Executive Analyst, News Curator, Japan Market Specialist, and more)
 - **Detail Level** — Brief, Standard, or Detailed
+- **Tone** — Executive Briefing, Journalistic, Analytical, Technical, Casual, Academic, or Strategic
+- **Report Language** — English, Japanese, or Auto
+- **Information Sources** — Select which Microsoft/GitHub sources to check
 - **Additional Instructions** — Any special focus or context
 
 ### Step 2: Assign to @copilot

@@ -52,3 +52,9 @@ agents:
     icon: "🐙"
     description: "Domain expert with deep knowledge of GitHub's platform, developer ecosystem, and open source. Developer-centric and fact-based."
     file: ".github/agents/github-specialist.agent.md"
+
+  - name: "Agent Creator"
+    slug: "agent-creator"
+    icon: "🛠️"
+    description: "Meta-agent that designs and creates new custom agents for the Copilot Coding Agent, following GitHub's agent.md specification."
+    file: ".github/agents/agent-creator.agent.md"
