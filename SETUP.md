@@ -24,7 +24,7 @@
 
 ## ⏱️ Setup Time & What You Need / セットアップ時間と必要なもの
 
-| | |
+| Item / 項目 | Detail / 詳細 |
 |---|---|
 | ⏱️ **Total time** / 合計時間 | About 20-30 minutes / 約20〜30分 |
 | 🖥️ **What you use** / 使うもの | GitHub website (no coding required) / GitHubウェブサイト（コーディング不要） |
@@ -91,7 +91,7 @@ Before you begin, make sure you have the following:
 
 ### English
 
-1. Go to the **Copilot Pulse template repository**: [github.com/shinyay/cloud-agent-demo](https://github.com/shinyay/cloud-agent-demo)
+1. Go to the **Copilot Pulse template repository** (repository name: `cloud-agent-demo`): [github.com/shinyay/cloud-agent-demo](https://github.com/shinyay/cloud-agent-demo)
 2. Click the green **"Use this template"** button (top right of the page)
 3. Select **"Create a new repository"**
 4. Fill in the form:
@@ -104,7 +104,7 @@ Before you begin, make sure you have the following:
 
 ### 日本語
 
-1. **Copilot Pulseテンプレートリポジトリ**にアクセス: [github.com/shinyay/cloud-agent-demo](https://github.com/shinyay/cloud-agent-demo)
+1. **Copilot Pulseテンプレートリポジトリ**（リポジトリ名: `cloud-agent-demo`）にアクセス: [github.com/shinyay/cloud-agent-demo](https://github.com/shinyay/cloud-agent-demo)
 2. ページ右上の緑色の **「Use this template」** ボタンをクリック
 3. **「Create a new repository」** を選択
 4. フォームを入力:
