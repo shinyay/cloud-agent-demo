@@ -1,24 +1,45 @@
 # 🚀 Setup Guide / セットアップガイド
 
-> **Setup guide for the Cloud Agent Demo Intelligence Dashboard (`shinyay/cloud-agent-demo`), created from the [Project Miki](https://github.com/shinyay/project-miki) template.**
+> **This guide walks you through setting up your own ⚡ Copilot Pulse intelligence dashboard — a website that uses GitHub's AI agent to automatically research and publish curated reports on Microsoft and GitHub news.**
 >
-> **[Project Miki](https://github.com/shinyay/project-miki) テンプレートから作成した Cloud Agent Demo インテリジェンスダッシュボード (`shinyay/cloud-agent-demo`) のセットアップガイドです。**
+> **このガイドでは、⚡ Copilot Pulse インテリジェンスダッシュボードのセットアップ手順を説明します。GitHubのAIエージェントが自動的にMicrosoftやGitHubのニュースを調査し、キュレーションされたレポートを公開するウェブサイトです。**
 
 ---
 
-## 📊 Configuration Status / 設定状態
+## 💡 What is Copilot Pulse? / Copilot Pulseとは？
 
-> Last updated: 2025-04 / 最終更新: 2025年4月
+**Copilot Pulse** is a ready-made intelligence dashboard that automatically publishes news and analysis reports. Here's how it works — no technical knowledge required to understand this:
 
-| Setting / 設定 | Status / 状態 | Notes / 備考 |
-|---|---|---|
-| GitHub Pages | ✅ Configured | [shinyay.github.io/cloud-agent-demo](https://shinyay.github.io/cloud-agent-demo/) |
-| Copilot Cloud Agent | ✅ Enabled | All safety toggles ON |
-| Firewall (Recommended allowlist) | ✅ Enabled | Built-in recommended domains active |
-| Firewall (Custom allowlist — UI) | ⚠️ Pending | 13 domains need to be added via UI |
-| Firewall (Actions variable) | ✅ Set | `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS` configured |
-| URL replacements | ✅ Done | All `project-miki` → `cloud-agent-demo` |
-| Auto-title workflow | ✅ Active | `.github/workflows/auto-title.yml` |
+1. **You ask** — Create a GitHub Issue describing a topic (e.g., "This week's Azure announcements")
+2. **AI researches** — GitHub's AI agent (Copilot Cloud Agent) reads the issue, visits real websites, and gathers information
+3. **Reports appear** — Within a few minutes, a report is published on your dashboard website
+
+**Copilot Pulse** は、ニュースや分析レポートを自動的に公開するインテリジェンスダッシュボードです。仕組みは次の通りです：
+
+1. **リクエスト** — GitHub Issueでトピックを記述（例：「今週のAzureの発表内容」）
+2. **AIが調査** — GitHubのAIエージェント（Copilot Cloud Agent）がIssueを読み取り、実際のウェブサイトを参照して情報を収集
+3. **レポート公開** — 数分でダッシュボードにレポートが公開
+
+---
+
+## ⏱️ Setup Time & What You Need / セットアップ時間と必要なもの
+
+| Item / 項目 | Detail / 詳細 |
+|---|---|
+| ⏱️ **Total time** / 合計時間 | About 20-30 minutes / 約20〜30分 |
+| 🖥️ **What you use** / 使うもの | GitHub website (no coding required) / GitHubウェブサイト（コーディング不要） |
+| 📋 **Steps** / ステップ数 | 6 steps / 6ステップ |
+
+**What you'll need / 必要なもの:**
+- A GitHub account (free) — [github.com](https://github.com)
+- A **GitHub Copilot subscription** that includes Copilot Cloud Agent access
+  - Individual, Business, or Enterprise plan
+  - Not sure? Check [github.com/settings/copilot](https://github.com/settings/copilot)
+
+**GitHubアカウント**（無料）— [github.com](https://github.com)  
+**GitHub Copilotサブスクリプション**（Copilot Cloud Agentが含まれるプラン）  
+- Individual、Business、またはEnterpriseプラン  
+- 不明な場合は [github.com/settings/copilot](https://github.com/settings/copilot) を確認してください
 
 ---
 
@@ -31,7 +52,8 @@
 5. [Step 4: Configure Firewall Allowlist / ファイアウォール許可リストを設定](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)
 6. [Step 5: Run Automated Setup / 自動セットアップを実行](#-step-5-run-automated-setup--自動セットアップを実行)
 7. [Step 6: Verify Your Dashboard / ダッシュボードを確認](#-step-6-verify-your-dashboard--ダッシュボードを確認)
-8. [Appendix: Manual Setup / 付録：手動セットアップ](#-appendix-manual-setup--付録手動セットアップ)
+8. [Appendix: Manual Setup (Advanced) / 付録：手動セットアップ（上級者向け）](#-appendix-manual-setup-advanced--付録手動セットアップ上級者向け)
+9. [Troubleshooting / トラブルシューティング](#-troubleshooting--トラブルシューティング)
 
 ---
 
@@ -43,13 +65,13 @@ Before you begin, make sure you have the following:
 
 | Requirement / 要件 | Description / 説明 |
 |---|---|
-| **GitHub Account** | A GitHub account (free or paid)<br>GitHubアカウント（無料または有料） |
-| **GitHub Copilot Subscription** | Required for the Cloud Agent to work. Copilot Individual, Business, or Enterprise plan.<br>Cloud Agentを動作させるために必要です。Copilot Individual、Business、またはEnterpriseプランが必要です。 |
-| **Copilot Cloud Agent Access** | Copilot Cloud Agent must be available on your account or organization. Check your Copilot settings.<br>Copilot Cloud Agentがアカウントまたは組織で利用可能であること。Copilot設定で確認してください。 |
+| **GitHub Account** | A GitHub account (free or paid) — [Sign up at github.com](https://github.com/signup)<br>GitHubアカウント（無料または有料）— [github.comでサインアップ](https://github.com/signup) |
+| **GitHub Copilot Subscription** | Required for the AI agent to work. Individual, Business, or Enterprise plan.<br>AIエージェントを動作させるために必要。Individual、Business、またはEnterpriseプランが必要です。 |
+| **Copilot Cloud Agent Access** | Must be available on your account/organization. Check at [github.com/settings/copilot](https://github.com/settings/copilot)<br>アカウントまたは組織で利用可能であること。[github.com/settings/copilot](https://github.com/settings/copilot) で確認できます。 |
 
 > **📢 What's NOT copied from the template / テンプレートからコピーされないもの:**
 >
-> When you create a repository from a template, all **files** are copied, but the following **settings** are NOT carried over. You must configure them manually (Steps 2-4):
+> When you create a repository from a template, all **files** are copied, but the following **settings** are NOT carried over. You must configure them manually (Steps 2–4):
 >
 > テンプレートからリポジトリを作成すると、すべての**ファイル**はコピーされますが、以下の**設定**は引き継がれません。手動で設定する必要があります（Step 2〜4）：
 >
@@ -69,7 +91,7 @@ Before you begin, make sure you have the following:
 
 ### English
 
-1. Go to the **Project Miki template repository**: [github.com/shinyay/project-miki](https://github.com/shinyay/project-miki)
+1. Go to the **Copilot Pulse template repository** (repository name: `cloud-agent-demo`): [github.com/shinyay/cloud-agent-demo](https://github.com/shinyay/cloud-agent-demo)
 2. Click the green **"Use this template"** button (top right of the page)
 3. Select **"Create a new repository"**
 4. Fill in the form:
@@ -82,7 +104,7 @@ Before you begin, make sure you have the following:
 
 ### 日本語
 
-1. **Project Mikiテンプレートリポジトリ**にアクセス: [github.com/shinyay/project-miki](https://github.com/shinyay/project-miki)
+1. **Copilot Pulseテンプレートリポジトリ**（リポジトリ名: `cloud-agent-demo`）にアクセス: [github.com/shinyay/cloud-agent-demo](https://github.com/shinyay/cloud-agent-demo)
 2. ページ右上の緑色の **「Use this template」** ボタンをクリック
 3. **「Create a new repository」** を選択
 4. フォームを入力:
@@ -94,103 +116,116 @@ Before you begin, make sure you have the following:
 6. 数秒待つと、新しいリポジトリが作成されます
 
 > **⚠️ Important / 重要:**
-> At this point, all files are copied but links still point to the original `shinyay/project-miki`. We'll fix this in Step 4.
+> At this point, all files are copied but links still point to the original `shinyay/cloud-agent-demo`. We'll fix this automatically in Step 5.
 >
-> この時点ではファイルはすべてコピーされていますが、リンクは元の `shinyay/project-miki` を指しています。Step 4で修正します。
+> この時点ではファイルはすべてコピーされていますが、リンクは元の `shinyay/cloud-agent-demo` を指しています。Step 5で自動的に修正します。
 
 ---
 
 ## 🌐 Step 2: Enable GitHub Pages / GitHub Pages を有効化
 
-> **This step must be done manually in the GitHub UI. Copilot cannot change repository settings.**
+> **This step must be done manually in the GitHub UI. There are no command-line tools needed — everything is done through clickable buttons and dropdowns.**
 >
-> **このステップはGitHub UIで手動で行う必要があります。Copilotはリポジトリ設定を変更できません。**
+> **このステップはGitHub UIで手動で行います。コマンドラインツールは不要で、すべてボタンとドロップダウンで操作します。**
 
 ### English
 
-1. Go to your new repository on GitHub
-2. Click **"Settings"** tab (top menu bar, near the right side — gear icon)
-3. In the left sidebar, scroll down to **"Code and automation"** section
-4. Click **"Pages"**
-5. Under **"Build and deployment"**:
-   - **Source**: Select **"Deploy from a branch"**
-   - **Branch**: Select **`main`** (or `master`) and **`/ (root)`**
-6. Click **"Save"**
-7. Wait approximately 2-3 minutes for the first deployment
-8. A banner will appear at the top: **"Your site is live at https://YOUR_USERNAME.github.io/YOUR_REPO/"**
+1. Go to your new repository on GitHub (e.g., `https://github.com/YOUR_USERNAME/YOUR_REPO`)
+2. Click the **"Settings"** tab — it's in the top menu bar of your repository (look for the ⚙️ gear icon or the word "Settings" near the right end)
+3. In the **left sidebar**, scroll down until you see a section called **"Code and automation"**
+4. Click **"Pages"** in that section
+5. Under **"Build and deployment"**, you'll see two dropdowns:
+   - **Source**: Click the dropdown and select **"Deploy from a branch"**
+   - **Branch**: Click the first dropdown and select **`main`** (or `master`), then click the second dropdown and select **`/ (root)`**
+6. Click the **"Save"** button
+7. Wait approximately **2–3 minutes** for the first deployment to complete
+8. Refresh the page — a blue banner will appear at the top: **"Your site is live at `https://YOUR_USERNAME.github.io/YOUR_REPO/`"**
+
+> **💡 Tip:** Copy that URL! That will be your dashboard address.
 
 ### 日本語
 
-1. GitHubで新しいリポジトリにアクセス
-2. 上部メニューバーの **「Settings」** タブをクリック（右側、歯車アイコン付近）
-3. 左サイドバーの **「Code and automation」** セクションまでスクロール
-4. **「Pages」** をクリック
-5. **「Build and deployment」** セクションで:
-   - **Source**: **「Deploy from a branch」** を選択
-   - **Branch**: **`main`**（または `master`）と **`/ (root)`** を選択
-6. **「Save」** をクリック
-7. 最初のデプロイメントが完了するまで約2〜3分待つ
-8. ページ上部にバナーが表示されます: **「Your site is live at https://YOUR_USERNAME.github.io/YOUR_REPO/」**
+1. GitHubで新しいリポジトリにアクセス（例: `https://github.com/YOUR_USERNAME/YOUR_REPO`）
+2. リポジトリの上部メニューバーにある **「Settings」** タブをクリック（⚙️ 歯車アイコン、または右端付近の「Settings」という文字）
+3. **左サイドバー**を下にスクロールして **「Code and automation」** セクションを探す
+4. そのセクションにある **「Pages」** をクリック
+5. **「Build and deployment」** セクションに2つのドロップダウンが表示されます:
+   - **Source**: ドロップダウンをクリックして **「Deploy from a branch」** を選択
+   - **Branch**: 最初のドロップダウンで **`main`**（または `master`）を選択し、2番目のドロップダウンで **`/ (root)`** を選択
+6. **「Save」** ボタンをクリック
+7. 最初のデプロイが完了するまで約 **2〜3分** 待つ
+8. ページを再読み込みすると、青いバナーが上部に表示されます: **「Your site is live at `https://YOUR_USERNAME.github.io/YOUR_REPO/`」**
+
+> **💡 ヒント:** そのURLをメモしておいてください！それがあなたのダッシュボードのアドレスになります。
 
 > **📝 Note / 注意:**
-> The site will deploy but links won't work correctly yet — they still point to the original repository. This is expected and will be fixed in Step 4.
+> The site will deploy but links won't work correctly yet — they still point to the original repository. This is expected and will be fixed in Step 5.
 >
-> サイトはデプロイされますが、リンクはまだ元のリポジトリを指しているため正しく動作しません。これはStep 4で修正されます。
+> サイトはデプロイされますが、リンクはまだ元のリポジトリを指しているため正しく動作しません。これはStep 5で修正されます。
 
 ---
 
 ## 🤖 Step 3: Enable Copilot Cloud Agent / Copilot Cloud Agent を有効化
 
-> **This step must be done manually in the GitHub UI. Copilot cannot enable itself.**
+> **This step must be done manually in the GitHub UI. No coding required — just toggle some settings.**
 >
-> **このステップはGitHub UIで手動で行う必要があります。Copilotは自分自身を有効化できません。**
+> **このステップはGitHub UIで手動で行います。コーディングは不要で、設定をオンにするだけです。**
 
 ### English
 
 1. Go to your new repository on GitHub
-2. Click **"Settings"** tab
-3. In the left sidebar, find **"Copilot"** section (under "Code and automation")
-4. Click **"Copilot"** → **"Cloud agent"**
-5. You'll see the **"Copilot cloud agent"** settings page with several toggles
-6. Make sure the main toggle at the top is set to **"Enabled"**
-7. Recommended: Enable all safety features (Firewall, CodeQL analysis, Secret scanning, etc.)
+2. Click the **"Settings"** tab
+3. In the **left sidebar**, look for **"Copilot"** under the "Code and automation" section
+4. Click **"Copilot"** — you'll see a submenu appear with **"Cloud agent"**
+5. Click **"Cloud agent"**
+6. On the settings page, make sure the main toggle at the top is turned **"On"** (it should turn blue/green)
+7. **Recommended**: Enable all the safety features shown on the page — these protect your repository:
+   - ✅ Firewall (controls which websites Copilot can visit)
+   - ✅ CodeQL analysis (security scanning)
+   - ✅ Secret scanning (prevents accidentally sharing passwords)
 
-**If you don't see the Copilot section:**
-- Make sure you have a Copilot subscription (Individual, Business, or Enterprise)
-- If you're in an organization, the org admin may need to enable Copilot Cloud Agent at the organization level first
-- Check [GitHub Copilot documentation](https://docs.github.com/en/copilot) for the latest setup instructions
+**If you don't see the "Copilot" section in Settings:**
+
+- ✅ Make sure you're signed into the GitHub account with a Copilot subscription
+- ✅ If you're in an organization (your company's GitHub account), your org admin may need to enable Copilot Cloud Agent at the organization level first — contact your IT/admin team
+- ✅ Check [GitHub Copilot documentation](https://docs.github.com/en/copilot) for the latest setup instructions
 
 ### 日本語
 
 1. GitHubで新しいリポジトリにアクセス
 2. **「Settings」** タブをクリック
-3. 左サイドバーの **「Code and automation」** セクションにある **「Copilot」** をクリック
-4. **「Copilot」** → **「Cloud agent」** をクリック
-5. **「Copilot cloud agent」** の設定ページにいくつかのトグルが表示されます
-6. ページ上部のメイントグルを **「Enabled」** に設定する
-7. 推奨: すべての安全機能（Firewall、CodeQL分析、Secret scanning など）を有効にする
+3. **左サイドバー**の「Code and automation」セクションにある **「Copilot」** を探す
+4. **「Copilot」** をクリックするとサブメニューが表示され、**「Cloud agent」** が見えます
+5. **「Cloud agent」** をクリック
+6. 設定ページで、上部のメイントグルを **「On」** に設定（青または緑色になります）
+7. **推奨**: ページに表示されているすべての安全機能を有効にする:
+   - ✅ Firewall（Copilotがアクセスできるウェブサイトを制御）
+   - ✅ CodeQL analysis（セキュリティスキャン）
+   - ✅ Secret scanning（パスワードの誤共有防止）
 
-**Copilotセクションが表示されない場合:**
-- Copilotサブスクリプション（Individual、Business、またはEnterprise）があることを確認してください
-- 組織アカウントの場合、組織管理者が先に組織レベルでCopilot Cloud Agentを有効化する必要がある場合があります
-- 最新のセットアップ手順は[GitHub Copilotドキュメント](https://docs.github.com/ja/copilot)を参照してください
+**Settings に「Copilot」セクションが表示されない場合:**
+
+- ✅ Copilotサブスクリプションのあるアカウントでサインインしているか確認してください
+- ✅ 組織アカウント（会社のGitHubアカウント）の場合は、組織管理者が先に組織レベルでCopilot Cloud Agentを有効化する必要があります。IT/管理者チームに連絡してください
+- ✅ 最新の手順は[GitHub Copilotドキュメント](https://docs.github.com/ja/copilot)を参照してください
 
 ---
 
 ## 🔥 Step 4: Configure Firewall Allowlist / ファイアウォール許可リストを設定
 
-> **The Copilot Cloud Agent has a built-in firewall that blocks network requests to domains not on the allowlist. Without this step, Copilot cannot fetch content from Microsoft and GitHub blogs to generate reports.**
+> **Think of the firewall allowlist as a "permission list" of websites that the AI is allowed to visit. Without it, the AI can't fetch news from Microsoft and GitHub blogs, so reports will contain no real content.**
 >
-> **Copilot Cloud Agentには、許可リストにないドメインへのネットワークリクエストをブロックするファイアウォールが内蔵されています。このステップなしでは、CopilotはMicrosoftやGitHubのブログからコンテンツを取得してレポートを生成できません。**
+> **ファイアウォール許可リストとは、AIがアクセスを許可されているウェブサイトの「許可リスト」です。これがないと、AIはMicrosoftやGitHubのブログからニュースを取得できないため、レポートに実際のコンテンツが含まれません。**
 
 ### English
 
 1. Go to your repository on GitHub
-2. Click **"Settings"** tab
-3. In the left sidebar, find **"Copilot"** section (under "Code and automation")
+2. Click the **"Settings"** tab
+3. In the **left sidebar**, find **"Copilot"** under "Code and automation"
 4. Click **"Copilot"** → **"Cloud agent"**
-5. Find the **"Firewall"** or **"Allowlist"** configuration section
-6. Add the following domains one by one:
+5. Scroll down to find the **"Firewall"** section
+6. Look for a **"Custom allowlist"** or **"Allowed domains"** input area
+7. Add the following domains — you can type or paste them one by one:
 
 **Microsoft domains (10):**
 
@@ -215,52 +250,23 @@ Before you begin, make sure you have the following:
 | `docs.github.com` | GitHub Documentation |
 | `githubuniverse.com` | GitHub Universe Conference |
 
-7. Click **"Save"** to apply the allowlist
+8. Click **"Save"** to apply the allowlist
 
-### Alternative: Actions Variable Method / Actions変数を使用する方法
-
-You can also configure the firewall allowlist using a repository Actions variable. This is useful for automation or if you prefer CLI setup.
-
-Actions変数を使用してファイアウォール許可リストを設定することもできます。自動化やCLIでのセットアップを好む場合に便利です。
-
-**Variable name:** `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS`
-
-**Value** (comma-separated list of all domains):
-
-```
-blogs.microsoft.com,microsoft.com,devblogs.microsoft.com,azure.microsoft.com,news.microsoft.com,blogs.windows.com,developer.microsoft.com,techcommunity.microsoft.com,tech.hub.ms,learn.microsoft.com,github.blog,github.com,docs.github.com,githubuniverse.com
-```
-
-**Using GitHub CLI:**
-
-```bash
-gh variable set COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS \
-  --body "blogs.microsoft.com,microsoft.com,devblogs.microsoft.com,azure.microsoft.com,news.microsoft.com,blogs.windows.com,developer.microsoft.com,techcommunity.microsoft.com,tech.hub.ms,learn.microsoft.com,github.blog,github.com,docs.github.com,githubuniverse.com"
-```
-
-**Using GitHub UI:**
-
-1. Go to **Settings** → **Secrets and variables** → **Actions**
-2. Click the **"Variables"** tab
-3. Click **"New repository variable"**
-4. Name: `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS`
-5. Value: paste the comma-separated list above
-6. Click **"Add variable"**
-
-> **💡 Note:** Both the UI Custom allowlist and the Actions variable work together. The Actions variable adds domains to the allowlist automatically when Copilot runs in GitHub Actions.
+> **⚠️ What happens without the allowlist? / 許可リストがない場合どうなるか？**
 >
-> **💡 注:** UIのカスタム許可リストとActions変数は併用できます。Actions変数は、CopilotがGitHub Actionsで実行される際に自動的にドメインを許可リストに追加します。
-
-> **💡 Tip:** You can add or remove domains later at any time. If you want Copilot to fetch from additional sources (e.g., your company's blog), add those domains here too.
+> Copilot will still be able to process issues and create report files, but all attempts to fetch content will be **blocked**. The resulting reports will lack real content and may contain only AI-generated summaries based on training data — not current information.
+>
+> Copilotは引き続きIssueを処理しレポートファイルを作成できますが、コンテンツを取得するすべての試みが**ブロック**されます。結果として生成されるレポートは最新のコンテンツではなく、トレーニングデータに基づくAI生成の要約のみとなります。
 
 ### 日本語
 
 1. GitHubでリポジトリにアクセス
 2. **「Settings」** タブをクリック
-3. 左サイドバーの **「Code and automation」** セクションにある **「Copilot」** をクリック
+3. **左サイドバー**の **「Code and automation」** セクションにある **「Copilot」** をクリック
 4. **「Copilot」** → **「Cloud agent」** をクリック
-5. **「Firewall」** または **「Allowlist」** の設定セクションを見つける
-6. 以下のドメインを1つずつ追加:
+5. 下にスクロールして **「Firewall」** セクションを探す
+6. **「Custom allowlist」** または **「Allowed domains」** の入力エリアを探す
+7. 以下のドメインを1つずつ入力または貼り付けて追加:
 
 **Microsoftドメイン（10個）:**
 
@@ -285,77 +291,109 @@ gh variable set COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS \
 | `docs.github.com` | GitHubドキュメント |
 | `githubuniverse.com` | GitHub Universeカンファレンス |
 
-7. **「Save」** をクリックして許可リストを適用
+8. **「Save」** をクリックして許可リストを適用
 
 > **💡 ヒント:** ドメインはいつでも追加・削除できます。Copilotに追加のソース（例：自社ブログ）からも取得させたい場合は、そのドメインもここに追加してください。
 
-> **⚠️ What happens without the allowlist? / 許可リストがない場合どうなるか？**
+---
+
+### 🔧 Alternative for Technical Users: Actions Variable Method / 技術者向け代替手段：Actions変数を使用する方法
+
+> **⚠️ This section is for technical users only. If you're not familiar with GitHub Actions variables or the command line, skip this section — the UI method above is all you need.**
 >
-> Copilot will still be able to process issues and create report files, but all `curl` commands to fetch content will be **blocked by the firewall**. The resulting reports will lack real content and may contain only AI-generated summaries based on training data — not current information.
+> **⚠️ このセクションは技術者向けです。GitHub Actions変数やコマンドラインに不慣れな場合はこのセクションをスキップしてください。上記のUI手順だけで十分です。**
+
+You can also configure the firewall allowlist using a repository Actions variable. This method can be used alongside the UI method above.
+
+**Variable name:** `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS`
+
+**Value** (comma-separated list of all domains):
+
+```
+blogs.microsoft.com,microsoft.com,devblogs.microsoft.com,azure.microsoft.com,news.microsoft.com,blogs.windows.com,developer.microsoft.com,techcommunity.microsoft.com,tech.hub.ms,learn.microsoft.com,github.blog,github.com,docs.github.com,githubuniverse.com
+```
+
+**Using GitHub CLI:**
+
+```bash
+gh variable set COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS \
+  --body "blogs.microsoft.com,microsoft.com,devblogs.microsoft.com,azure.microsoft.com,news.microsoft.com,blogs.windows.com,developer.microsoft.com,techcommunity.microsoft.com,tech.hub.ms,learn.microsoft.com,github.blog,github.com,docs.github.com,githubuniverse.com"
+```
+
+**Using GitHub UI (Settings → Secrets and variables → Actions):**
+
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Click the **"Variables"** tab
+3. Click **"New repository variable"**
+4. Name: `COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS`
+5. Value: paste the comma-separated list above
+6. Click **"Add variable"**
+
+> **💡 Note:** Both the UI Custom allowlist (above) and the Actions variable work together. The Actions variable adds domains to the allowlist automatically when Copilot runs in GitHub Actions.
 >
-> Copilotは引き続きIssueを処理しレポートファイルを作成できますが、コンテンツを取得するすべての `curl` コマンドが**ファイアウォールによりブロック**されます。結果として生成されるレポートは最新のコンテンツではなく、トレーニングデータに基づくAI生成の要約のみとなります。
+> **💡 注:** UIのカスタム許可リストとActions変数は併用できます。Actions変数は、CopilotがGitHub Actionsで実行される際に自動的にドメインを許可リストに追加します。
 
 ---
 
 ## ⚙️ Step 5: Run Automated Setup / 自動セットアップを実行
 
-> **This is where the magic happens! Copilot Cloud Agent will automatically update all 20 hardcoded references in your repository.**
+> **This is the "personalization" step — the AI will automatically update your repository files so all links point to your repository instead of the original template. You don't need to edit any files manually!**
 >
-> **ここが本番です！Copilot Cloud Agentがリポジトリ内の20箇所のハードコードされた参照を自動的に更新します。**
->
-> **✅ Already completed for this repository / このリポジトリでは完了済み:**
->
-> All URL replacements have already been applied to `cloud-agent-demo`. The information below is kept for reference.
->
-> すべてのURL置換は `cloud-agent-demo` に適用済みです。以下は参考情報として残しています。
+> **これは「パーソナライズ」ステップです。AIがリポジトリ内のファイルを自動的に更新し、すべてのリンクが元のテンプレートではなくあなたのリポジトリを指すようにします。ファイルを手動で編集する必要はありません！**
 
 ### English
 
-1. In your new repository, go to **"Issues"** tab
-2. Click **"New issue"**
-3. Find and select the **"🔧 Initial Setup / 初期セットアップ"** template
-4. Fill in the form:
-   - **GitHub Username**: Enter your GitHub username (e.g., `octocat`)
-   - **Repository Name**: Enter your repository name (e.g., `my-intel-dashboard`)
+1. In your new repository, click the **"Issues"** tab (in the top menu)
+2. Click the green **"New issue"** button
+3. You'll see a list of issue templates — find and click **"🔧 Initial Setup / 初期セットアップ"**
+   - (If you don't see templates, click "New issue" and look for a template list)
+4. Fill in the short form that appears:
+   - **GitHub Username**: Type your GitHub username exactly as it appears in your GitHub URL (e.g., if your profile is `github.com/octocat`, enter `octocat`)
+   - **Repository Name**: Type your repository name exactly as it appears in the URL (e.g., `my-intel-dashboard`)
 5. Click **"Submit new issue"**
-6. Now assign the issue to **@copilot**:
-   - On the right sidebar, click the **"Assignees"** gear icon (⚙️)
-   - Type **`copilot`** in the search box
-   - Select **"Copilot"** from the dropdown
-7. Wait 3-5 minutes — Copilot will:
-   - Read the issue and your inputs
-   - Find all 20 hardcoded references across 8 files
-   - Replace `shinyay` → your username, `project-miki` → your repo name
-   - Create a Pull Request with all changes
-8. You'll see a new PR appear — review it:
-   - Check that URLs look correct
-   - Verify `_config.yml` has your username and repo name
-9. Click **"Merge pull request"** → **"Confirm merge"**
-10. Wait 2-3 minutes for GitHub Pages to redeploy
+6. Now assign the issue to **@copilot** — this is what triggers the AI:
+   - Look at the **right sidebar** of the issue page
+   - Click the **⚙️ gear icon** next to **"Assignees"**
+   - Type **`copilot`** in the search box that appears
+   - Click **"Copilot"** in the dropdown list
+   - The gear icon closes — you should now see "Copilot" listed under Assignees
+7. **Wait 3–5 minutes** — the AI will:
+   - Read your username and repository name from the issue
+   - Find all the links in 8 files that still point to the original template
+   - Replace them with links pointing to your repository
+   - Create a **Pull Request** (PR) with all the changes
+8. You'll get a notification and see a new **Pull Request** appear in the "Pull requests" tab — click on it to review:
+   - Scroll through to verify your username and repo name appear in the file previews
+   - ✅ If it looks correct, you're ready to merge
+9. Click the green **"Merge pull request"** button, then **"Confirm merge"**
+10. **Wait 2–3 minutes** for GitHub Pages to rebuild and redeploy your site
 
 ### 日本語
 
-1. 新しいリポジトリで **「Issues」** タブに移動
-2. **「New issue」** をクリック
-3. **「🔧 Initial Setup / 初期セットアップ」** テンプレートを選択
-4. フォームを入力:
-   - **GitHub Username**: 自分のGitHubユーザー名を入力（例: `octocat`）
-   - **Repository Name**: リポジトリ名を入力（例: `my-intel-dashboard`）
+1. 新しいリポジトリで上部メニューの **「Issues」** タブをクリック
+2. 緑色の **「New issue」** ボタンをクリック
+3. Issueテンプレートの一覧が表示されたら、**「🔧 Initial Setup / 初期セットアップ」** を探してクリック
+   - （テンプレートが表示されない場合は「New issue」をクリックしてテンプレート一覧を探してください）
+4. 表示される短いフォームを入力:
+   - **GitHub Username**: GitHubのURLに表示されるとおりにGitHubユーザー名を入力（例: プロフィールが `github.com/octocat` なら `octocat` を入力）
+   - **Repository Name**: URLに表示されるとおりにリポジトリ名を入力（例: `my-intel-dashboard`）
 5. **「Submit new issue」** をクリック
-6. Issueを **@copilot** に割り当てる:
-   - 右サイドバーの **「Assignees」** 歯車アイコン（⚙️）をクリック
-   - 検索ボックスに **`copilot`** と入力
-   - ドロップダウンから **「Copilot」** を選択
-7. 3〜5分待つ — Copilotが以下を実行します:
-   - Issueと入力内容を読み取る
-   - 8ファイルにまたがる20箇所のハードコードされた参照をすべて検出
-   - `shinyay` → あなたのユーザー名、`project-miki` → あなたのリポジトリ名に置換
-   - すべての変更を含むPull Requestを作成
-8. 新しいPRが表示されます — レビューしてください:
-   - URLが正しいことを確認
-   - `_config.yml` にあなたのユーザー名とリポジトリ名が入っていることを確認
-9. **「Merge pull request」** → **「Confirm merge」** をクリック
-10. GitHub Pagesが再デプロイされるまで2〜3分待つ
+6. Issueを **@copilot** に割り当てる — これがAIのトリガーになります:
+   - Issueページの **右サイドバー** を確認
+   - **「Assignees」** の横にある **⚙️ 歯車アイコン** をクリック
+   - 表示される検索ボックスに **`copilot`** と入力
+   - ドロップダウンリストで **「Copilot」** をクリック
+   - 歯車アイコンが閉じ、Assigneesに「Copilot」が表示されます
+7. **3〜5分待つ** — AIが以下を実行します:
+   - IssueからユーザーIDとリポジトリ名を読み取る
+   - 元のテンプレートを指している8ファイルのリンクをすべて検出
+   - あなたのリポジトリを指すリンクに置換
+   - すべての変更を含む **Pull Request（PR）** を作成
+8. 通知が届き、「Pull requests」タブに新しい **Pull Request** が表示されます。クリックして確認:
+   - ファイルのプレビューにあなたのユーザー名とリポジトリ名が表示されていることを確認
+   - ✅ 正しければマージの準備完了
+9. 緑色の **「Merge pull request」** ボタンをクリックし、**「Confirm merge」** をクリック
+10. GitHub Pagesの再ビルドと再デプロイが完了するまで **2〜3分待つ**
 
 > **💡 What Copilot Changes / Copilotが変更する内容:**
 >
@@ -376,73 +414,79 @@ gh variable set COPILOT_AGENT_FIREWALL_ALLOW_LIST_ADDITIONS \
 
 ### English
 
-After merging the setup PR, verify everything works:
+After merging the setup PR, let's make sure everything is working:
 
-1. **Visit your dashboard**: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
-   - ✅ You should see the Intelligence Dashboard homepage
-   - ✅ The header shows "⚡ Copilot Pulse" with working navigation links
+1. **Visit your dashboard**: Open `https://YOUR_USERNAME.github.io/YOUR_REPO/` in your browser
+   - ✅ You should see the ⚡ Copilot Pulse Intelligence Dashboard homepage
+   - ✅ The header shows "⚡ Copilot Pulse" with navigation links
+   - ❌ If you see a 404 error, wait another 2–3 minutes and try again (GitHub Pages may still be building)
 
-2. **Check the navigation links**:
-   - Click **"Home"** — should go to your dashboard
-   - Click **"About"** — should show the About page with correct issue links
-   - Click **"+ New Report"** — should open a new issue form **in your repository** (not the original)
+2. **Check the navigation links work correctly**:
+   - Click **"Home"** — should stay on your dashboard
+   - Click **"About"** — should show the About page
+   - Click **"+ New Report"** — **important!** This should open a new issue form **in YOUR repository** (the URL should show your username, not `shinyay`)
    - Click **"⚙️ Admin"** — should open the admin management page
 
-3. **Try creating your first report**:
-   - Click **"+ New Report"** or go to Issues → New Issue → Research Request
-   - Fill in a topic (e.g., "This week's Microsoft blog highlights")
-   - Submit the issue
-   - Assign to **@copilot**
-   - Wait 5-10 minutes for the PR
-   - Merge the PR
-   - Check your dashboard — the report should appear!
+3. **Create your first report** — this is the ultimate test!
+   - Click **"+ New Report"** (or go to Issues → New Issue → select "Research Request")
+   - Fill in a topic, for example: *"This week's highlights from the Microsoft blog"*
+   - Click **"Submit new issue"**
+   - Assign the issue to **@copilot** (same as you did in Step 5)
+   - Wait **5–10 minutes** for Copilot to research and create a Pull Request
+   - Go to the **"Pull requests"** tab and merge the PR Copilot created
+   - Visit your dashboard — the new report should appear!
 
-4. **Verify the admin page**:
+4. **Verify the admin page works**:
    - Go to `https://YOUR_USERNAME.github.io/YOUR_REPO/admin/`
-   - Click "🎨 Create Design Issue" — should open an issue in YOUR repo
-   - Click "🛠️ Create Agent Issue" — should open an issue in YOUR repo
+   - Click **"🎨 Create Design Issue"** — the issue should open in YOUR repository
+   - Click **"🛠️ Create Agent Issue"** — the issue should open in YOUR repository
 
 ### 日本語
 
 セットアップPRをマージした後、すべてが正常に動作することを確認します：
 
-1. **ダッシュボードにアクセス**: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
-   - ✅ インテリジェンスダッシュボードのホームページが表示される
-   - ✅ ヘッダーに「⚡ Copilot Pulse」と正しいナビゲーションリンクが表示される
+1. **ダッシュボードにアクセス**: ブラウザで `https://YOUR_USERNAME.github.io/YOUR_REPO/` を開く
+   - ✅ ⚡ Copilot Pulseインテリジェンスダッシュボードのホームページが表示される
+   - ✅ ヘッダーに「⚡ Copilot Pulse」とナビゲーションリンクが表示される
+   - ❌ 404エラーが表示された場合は、さらに2〜3分待ってから再試行（GitHub Pagesがまだビルド中の可能性があります）
 
-2. **ナビゲーションリンクを確認**:
-   - **「Home」** をクリック — ダッシュボードに移動すること
-   - **「About」** をクリック — Aboutページに正しいIssueリンクが表示されること
-   - **「+ New Report」** をクリック — **自分のリポジトリ**（元のリポジトリではなく）で新しいIssueフォームが開くこと
+2. **ナビゲーションリンクが正しく動作することを確認**:
+   - **「Home」** をクリック — ダッシュボードに留まること
+   - **「About」** をクリック — Aboutページが表示されること
+   - **「+ New Report」** をクリック — **重要！** **あなたのリポジトリ**でIssueフォームが開くこと（URLにあなたのユーザー名が表示され、`shinyay` ではないこと）
    - **「⚙️ Admin」** をクリック — 管理ページが開くこと
 
-3. **最初のレポートを作成してみる**:
-   - **「+ New Report」** をクリック、またはIssues → New Issue → Research Requestに移動
-   - トピックを入力（例: 「今週のMicrosoftブログのハイライト」）
-   - Issueを送信
-   - **@copilot** に割り当てる
-   - PRが届くまで5〜10分待つ
-   - PRをマージ
-   - ダッシュボードを確認 — レポートが表示されるはずです！
+3. **最初のレポートを作成** — これが最終テストです！
+   - **「+ New Report」** をクリック（またはIssues → New Issue → 「Research Request」を選択）
+   - トピックを入力、例: 「今週のMicrosoftブログのハイライト」
+   - **「Submit new issue」** をクリック
+   - Step 5と同様に、Issueを **@copilot** に割り当てる
+   - CopilotがリサーチしてPull Requestを作成するまで **5〜10分** 待つ
+   - **「Pull requests」** タブに移動し、Copilotが作成したPRをマージ
+   - ダッシュボードを確認 — 新しいレポートが表示されます！
 
 4. **管理ページを確認**:
    - `https://YOUR_USERNAME.github.io/YOUR_REPO/admin/` にアクセス
-   - 「🎨 Create Design Issue」をクリック — **自分のリポジトリ**でIssueが開くこと
-   - 「🛠️ Create Agent Issue」をクリック — **自分のリポジトリ**でIssueが開くこと
+   - **「🎨 Create Design Issue」** をクリック — **あなたのリポジトリ**でIssueが開くこと
+   - **「🛠️ Create Agent Issue」** をクリック — **あなたのリポジトリ**でIssueが開くこと
 
 > **🎉 Congratulations! / おめでとうございます！**
 >
-> Your intelligence dashboard is now fully configured and ready to use. Create issues, assign to @copilot, and start building your curated knowledge base!
+> Your ⚡ Copilot Pulse intelligence dashboard is now fully set up and ready to demo! Create issues, assign them to @copilot, and start building your curated knowledge base. Great for weekly briefings, team updates, and Microsoft seller demos.
 >
-> インテリジェンスダッシュボードの設定が完了しました！Issueを作成し、@copilotに割り当てて、キュレーションされたナレッジベースの構築を始めましょう！
+> ⚡ Copilot Pulseインテリジェンスダッシュボードの設定が完了しました！Issueを作成し、@copilotに割り当てて、キュレーションされたナレッジベースの構築を始めましょう。週次ブリーフィング、チームアップデート、Microsoftのセラーデモに最適です。
 
 ---
 
-## 📖 Appendix: Manual Setup / 付録：手動セットアップ
+## 📖 Appendix: Manual Setup (Advanced) / 付録：手動セットアップ（上級者向け）
 
-> **Use this if you don't have Copilot access, or prefer to make changes manually.**
+> **⚠️ This section is for technical users only. If you completed Step 5 successfully using the automated Copilot method, you do NOT need this section.**
 >
-> **Copilotを利用できない場合、または手動で変更したい場合に使用してください。**
+> Use this if you don't have Copilot access, prefer to make changes manually, or want to understand exactly what was changed.
+>
+> **⚠️ このセクションは技術者向けです。Step 5のCopilot自動化手順が正常に完了した場合、このセクションは不要です。**
+>
+> Copilotにアクセスできない場合、手動で変更したい場合、または変更内容を詳しく理解したい場合に使用してください。
 
 ### What Needs to Change / 変更が必要な箇所
 
@@ -453,7 +497,7 @@ Replace these two values throughout the repository:
 | Find / 検索 | Replace With / 置換 |
 |---|---|
 | `shinyay` | Your GitHub username / あなたのGitHubユーザー名 |
-| `project-miki` | Your repository name / あなたのリポジトリ名 |
+| `cloud-agent-demo` | Your repository name / あなたのリポジトリ名 |
 
 ### Complete Reference List / 完全な参照リスト
 
@@ -466,7 +510,7 @@ Below is every hardcoded reference that must be updated:
 ```yaml
 # Before / 変更前:
 url: "https://shinyay.github.io"
-baseurl: "/project-miki"
+baseurl: "/cloud-agent-demo"
 
 # After / 変更後:
 url: "https://YOUR_USERNAME.github.io"
@@ -477,15 +521,15 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- Line 22: Nav CTA link / ナビCTAリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>
 
 <!-- Line 38: Footer GitHub link / フッターGitHubリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" ...>
 
 <!-- Line 40: Footer New Report link / フッター新規レポートリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>
 ```
 
@@ -493,7 +537,7 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- Issue link in report header / レポートヘッダーのIssueリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/{{ page.issue_number }}" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/{{ page.issue_number }}" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/{{ page.issue_number }}" ...>
 ```
 
@@ -501,7 +545,7 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- Hero CTA / ヒーローCTA -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>
 <!-- (3 occurrences — same replacement for all) -->
 <!-- （3箇所 — すべて同じ置換） -->
@@ -511,11 +555,11 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- English issue link / 英語Issueリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>New Report →</a>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>New Report →</a>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>New Report →</a>
 
 <!-- Japanese issue link / 日本語Issueリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>新しいIssue →</a>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>新しいIssue →</a>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>新しいIssue →</a>
 ```
 
@@ -526,7 +570,7 @@ baseurl: "/YOUR_REPO"
 // すべてのwindow.open()呼び出し — ベースURLを置換:
 
 // Before / 変更前:
-window.open('https://github.com/shinyay/project-miki/issues/new?title=...')
+window.open('https://github.com/shinyay/cloud-agent-demo/issues/new?title=...')
 
 // After / 変更後:
 window.open('https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=...')
@@ -536,18 +580,18 @@ window.open('https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=...')
 
 ```markdown
 <!-- Dashboard URL / ダッシュボードURL -->
-[shinyay.github.io/project-miki](https://shinyay.github.io/project-miki/)
+[shinyay.github.io/cloud-agent-demo](https://shinyay.github.io/cloud-agent-demo/)
 → [YOUR_USERNAME.github.io/YOUR_REPO](https://YOUR_USERNAME.github.io/YOUR_REPO/)
 
 <!-- Issue link / Issueリンク -->
-[**Issues → New Issue**](https://github.com/shinyay/project-miki/issues/new?template=research-request.yml)
+[**Issues → New Issue**](https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml)
 → [**Issues → New Issue**](https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml)
 
 <!-- Project structure / プロジェクト構造 -->
-project-miki/  →  YOUR_REPO/
+cloud-agent-demo/  →  YOUR_REPO/
 
 <!-- Admin page / 管理ページ -->
-[/admin/](https://shinyay.github.io/project-miki/admin/)
+[/admin/](https://shinyay.github.io/cloud-agent-demo/admin/)
 → [/admin/](https://YOUR_USERNAME.github.io/YOUR_REPO/admin/)
 ```
 
@@ -555,15 +599,19 @@ project-miki/  →  YOUR_REPO/
 
 ```yaml
 # Before / 変更前:
-url: "https://shinyay.github.io/project-miki/about/"
-url: "https://shinyay.github.io/project-miki/"
+url: "https://shinyay.github.io/cloud-agent-demo/about/"
+url: "https://shinyay.github.io/cloud-agent-demo/"
 
 # After / 変更後:
 url: "https://YOUR_USERNAME.github.io/YOUR_REPO/about/"
 url: "https://YOUR_USERNAME.github.io/YOUR_REPO/"
 ```
 
-### Quick Replace Commands / 一括置換コマンド
+### 🔧 Quick Replace Commands (Command Line / Terminal) / 一括置換コマンド（コマンドライン・ターミナル）
+
+> **⚠️ This section requires using the Terminal / command line. Non-technical users should use the Copilot automated method in Step 5 instead.**
+>
+> **⚠️ このセクションはターミナル/コマンドラインの使用が必要です。非技術者の方はStep 5のCopilot自動化手順を使用してください。**
 
 If you have the repository cloned locally, you can use these commands:
 
@@ -582,7 +630,7 @@ find . -type f \( -name "*.md" -o -name "*.html" -o -name "*.yml" \) \
 # ⚠️ YOUR_REPO を実際のリポジトリ名に置き換えてください
 find . -type f \( -name "*.md" -o -name "*.html" -o -name "*.yml" \) \
   -not -path "./.git/*" -not -path "./SETUP.md" \
-  -exec sed -i 's/project-miki/YOUR_REPO/g' {} +
+  -exec sed -i 's/cloud-agent-demo/YOUR_REPO/g' {} +
 
 # Commit the changes / 変更をコミット
 git add -A
@@ -599,54 +647,60 @@ git push
 
 ## ❓ Troubleshooting / トラブルシューティング
 
-### GitHub Pages is not deploying / GitHub Pagesがデプロイされない
+### Problem: GitHub Pages is not deploying / GitHub Pagesがデプロイされない
 
-- **Check Settings → Pages**: Make sure the source is set to "Deploy from a branch" with `main` branch and `/ (root)` folder.
-- **Check Actions tab**: Look for a "pages build and deployment" workflow run. If it failed, click on it to see the error.
-- **Wait**: First deployment can take up to 5 minutes.
+**English:**
+- **Check Settings → Pages**: Make sure Source is set to "Deploy from a branch", Branch is `main`, folder is `/ (root)`.
+- **Check the Actions tab**: Look for a workflow called "pages build and deployment". If it failed, click it to see the error details.
+- **Just wait**: The first deployment can take up to 5 minutes.
 
----
-
-- **Settings → Pagesを確認**: ソースが「Deploy from a branch」に設定され、`main` ブランチと `/ (root)` フォルダが選択されていることを確認してください。
-- **Actionsタブを確認**: 「pages build and deployment」ワークフローの実行を探してください。失敗した場合はクリックしてエラーを確認してください。
-- **待機**: 最初のデプロイメントには最大5分かかる場合があります。
-
-### Copilot doesn't respond to the setup issue / Copilotがセットアップissueに反応しない
-
-- **Check assignment**: Make sure the issue is assigned to `Copilot` (not a human user named "copilot").
-- **Check Copilot is enabled**: Settings → Copilot → Cloud agent should be "Enabled".
-- **Check organization policy**: If in an org, Copilot Cloud Agent may need to be enabled at the org level.
-- **Retry**: Sometimes it takes a minute. If nothing happens after 5 minutes, unassign and re-assign @copilot.
+**日本語:**
+- **Settings → Pagesを確認**: Sourceが「Deploy from a branch」、Branchが`main`、フォルダが`/ (root)`に設定されていることを確認。
+- **Actionsタブを確認**: 「pages build and deployment」というワークフローを探す。失敗している場合はクリックしてエラー内容を確認。
+- **待機**: 最初のデプロイには最大5分かかることがあります。
 
 ---
 
-- **割り当てを確認**: Issueが `Copilot`（「copilot」という名前の人間のユーザーではなく）に割り当てられていることを確認してください。
-- **Copilotが有効か確認**: Settings → Copilot → Cloud agentが「Enabled」であること。
-- **組織ポリシーを確認**: 組織アカウントの場合、Copilot Cloud Agentが組織レベルで有効化されている必要がある場合があります。
-- **再試行**: 反応するまで1分ほどかかる場合があります。5分経っても何も起きない場合は、@copilotの割り当てを解除して再度割り当ててください。
+### Problem: Copilot doesn't respond to the issue / CopilotがIssueに反応しない
 
-### Links still point to the original repository / リンクがまだ元のリポジトリを指している
+**English:**
+- **Check the assignment**: The issue must be assigned to the official GitHub `Copilot` bot — not a human user named "copilot". Check the Assignees section on the issue — it should show a robot/bot icon.
+- **Check Copilot is enabled**: Go to Settings → Copilot → Cloud agent and make sure it shows "Enabled".
+- **Check organization policy**: If your account is part of a company/organization, the org admin may need to enable Copilot Cloud Agent at the organization level first.
+- **Retry**: If nothing happens after 5 minutes, remove @copilot from Assignees and re-add it.
 
-- **Check the PR was merged**: The setup PR created by Copilot must be merged for changes to take effect.
-- **Wait for redeploy**: After merging, GitHub Pages needs 2-3 minutes to rebuild.
-- **Hard refresh**: Try Ctrl+Shift+R (or Cmd+Shift+R on Mac) to clear browser cache.
-- **Check manually**: If Copilot missed something, use the [Manual Setup](#-appendix-manual-setup--付録手動セットアップ) section above.
-
----
-
-- **PRがマージされたか確認**: Copilotが作成したセットアップPRがマージされている必要があります。
-- **再デプロイを待つ**: マージ後、GitHub Pagesの再ビルドに2〜3分かかります。
-- **ハードリフレッシュ**: Ctrl+Shift+R（Macの場合はCmd+Shift+R）でブラウザキャッシュをクリアしてください。
-- **手動確認**: Copilotが見落とした箇所がある場合は、上記の[手動セットアップ](#-appendix-manual-setup--付録手動セットアップ)セクションを使用してください。
-
-### Reports contain no real content / レポートに実際のコンテンツが含まれない
-
-- **Check the firewall allowlist**: Go to Settings → Copilot → Cloud agent → Firewall. Make sure all 13 domains from [Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定) are listed.
-- **Check the PR comments**: If Copilot's `curl` requests were blocked, you may see warnings in the PR conversation mentioning blocked domains.
-- **Add missing domains**: If a specific source isn't working, add its domain to the allowlist and try again.
+**日本語:**
+- **割り当てを確認**: Issueは公式の GitHub `Copilot` ボットに割り当てる必要があります（「copilot」という名前の人間ユーザーではありません）。IssueのAssigneesセクションにロボット/ボットアイコンが表示されていることを確認。
+- **Copilotが有効か確認**: Settings → Copilot → Cloud agentで「Enabled」になっていることを確認。
+- **組織ポリシーを確認**: 会社・組織のアカウントの場合、組織管理者が先に組織レベルでCopilot Cloud Agentを有効化する必要がある場合があります。
+- **再試行**: 5分経っても何も起きない場合は、AssigneesからCopilotを削除して再度追加してください。
 
 ---
 
-- **ファイアウォール許可リストを確認**: Settings → Copilot → Cloud agent → Firewallに移動し、[Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)の13ドメインがすべてリストされていることを確認してください。
-- **PRコメントを確認**: Copilotの`curl`リクエストがブロックされた場合、PRのコメントにブロックされたドメインに関する警告が表示される場合があります。
-- **不足しているドメインを追加**: 特定のソースが機能しない場合は、そのドメインを許可リストに追加して再試行してください。
+### Problem: Links still point to the original repository / リンクがまだ元のリポジトリを指している
+
+**English:**
+- **Check the PR was merged**: The setup PR created by Copilot in Step 5 must be merged — changes don't take effect until it's merged.
+- **Wait for redeploy**: After merging, GitHub Pages needs 2–3 minutes to rebuild. Watch the Actions tab for a new "pages build and deployment" run.
+- **Hard refresh your browser**: Press **Ctrl+Shift+R** (Windows/Linux) or **Cmd+Shift+R** (Mac) to force-reload without browser cache.
+- **If Copilot missed something**: Use the [Manual Setup (Advanced)](#-appendix-manual-setup-advanced--付録手動セットアップ上級者向け) section above.
+
+**日本語:**
+- **PRがマージされたか確認**: Step 5でCopilotが作成したセットアップPRがマージされている必要があります。マージするまで変更は反映されません。
+- **再デプロイを待つ**: マージ後、GitHub Pagesの再ビルドに2〜3分かかります。Actionsタブで新しい「pages build and deployment」の実行を確認してください。
+- **ブラウザをハードリフレッシュ**: **Ctrl+Shift+R**（Windows/Linux）または **Cmd+Shift+R**（Mac）でキャッシュをクリアして強制再読み込み。
+- **Copilotが見落とした箇所がある場合**: 上記の[手動セットアップ（上級者向け）](#-appendix-manual-setup-advanced--付録手動セットアップ上級者向け)セクションを使用してください。
+
+---
+
+### Problem: Reports contain no real content / レポートに実際のコンテンツが含まれない
+
+**English:**
+- **Check the firewall allowlist**: Go to Settings → Copilot → Cloud agent → scroll to the Firewall section. Make sure all 13 domains from [Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定) are listed.
+- **Check the PR comments**: If the AI's web requests were blocked, you'll see warnings in the PR conversation listing the blocked domains.
+- **Add missing domains**: If a specific news source isn't appearing, add its domain to the allowlist in Settings and try creating a new report issue.
+
+**日本語:**
+- **ファイアウォール許可リストを確認**: Settings → Copilot → Cloud agentに移動し、Firewallセクションまでスクロール。[Step 4](#-step-4-configure-firewall-allowlist--ファイアウォール許可リストを設定)の13ドメインがすべてリストされていることを確認。
+- **PRコメントを確認**: AIのウェブリクエストがブロックされた場合、PRの会話欄にブロックされたドメインに関する警告が表示されます。
+- **不足しているドメインを追加**: 特定のニュースソースが表示されない場合は、そのドメインをSettingsの許可リストに追加して、新しいレポートIssueを作成してみてください。
