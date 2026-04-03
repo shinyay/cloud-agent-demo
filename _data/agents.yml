@@ -56,5 +56,5 @@ agents:
   - name: "Agent Creator"
     slug: "agent-creator"
     icon: "🛠️"
-    description: "Meta-agent that designs and creates new custom agents for the Copilot Coding Agent, following GitHub's agent.md specification."
+    description: "Meta-agent that designs and creates new custom agents for the Copilot Cloud Agent, following GitHub's agent.md specification."
     file: ".github/agents/agent-creator.agent.md"

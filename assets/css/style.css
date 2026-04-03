@@ -1,55 +1,57 @@
 /* ============================================================
-   Project Miki — Spring Atmosphere (春の雰囲気)
-   Soft sakura pinks, fresh greens, and warm pastels
+   Copilot Pulse — Intelligence Dashboard
+   Rich modern design with dark mode, glassmorphism, animations
    ============================================================ */
+
+/* ── Google Fonts (loaded in default.html) ── */
 
 /* ── CSS Custom Properties ── */
 :root {
-  /* Light Mode — Spring */
-  --color-primary: #D1729B;
-  --color-primary-light: #E8A0BF;
-  --color-primary-dark: #B8527E;
-  --color-accent: #7BAE7F;
-  --color-accent-2: #8ECAE6;
-  --color-text: #3B2E3B;
-  --color-text-secondary: #8A7A8A;
-  --color-bg: #FFF7F3;
+  /* Light Mode */
+  --color-primary: #0078D4;
+  --color-primary-light: #50A0E8;
+  --color-primary-dark: #005A9E;
+  --color-accent: #6C63FF;
+  --color-accent-2: #00BFA6;
+  --color-text: #1A1A2E;
+  --color-text-secondary: #6B7280;
+  --color-bg: #F0F2F5;
   --color-surface: #FFFFFF;
-  --color-surface-hover: #FFF0EC;
-  --color-border: #F2DAD0;
-  --color-border-light: #FBF0ED;
+  --color-surface-hover: #F8F9FA;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
 
   /* Tone Colors */
-  --tone-executive: #D1729B;
-  --tone-journalistic: #9B7ED8;
-  --tone-analytical: #7BAE7F;
-  --tone-technical: #E6A55A;
-  --tone-casual: #E87DA5;
-  --tone-academic: #8B7EC8;
-  --tone-strategic: #D97068;
+  --tone-executive: #0078D4;
+  --tone-journalistic: #6C63FF;
+  --tone-analytical: #00BFA6;
+  --tone-technical: #F59E0B;
+  --tone-casual: #EC4899;
+  --tone-academic: #8B5CF6;
+  --tone-strategic: #EF4444;
 
   /* Tag Colors */
-  --tag-ai: #9B7ED8;
-  --tag-copilot: #D1729B;
-  --tag-azure: #7BAE7F;
-  --tag-security: #D97068;
-  --tag-github: #5C4A5C;
-  --tag-default: #8A7A8A;
+  --tag-ai: #6C63FF;
+  --tag-copilot: #0078D4;
+  --tag-azure: #00BFA6;
+  --tag-security: #EF4444;
+  --tag-github: #333333;
+  --tag-default: #6B7280;
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 247, 243, 0.78);
-  --glass-border: rgba(242, 218, 208, 0.5);
-  --glass-blur: 18px;
-  --glass-shadow: 0 8px 32px rgba(180, 120, 140, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: 20px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 
   /* Gradient */
-  --gradient-hero: linear-gradient(135deg, #F2B5D4 0%, #D1729B 40%, #7BAE7F 100%);
-  --gradient-hero-dark: linear-gradient(135deg, #8A4568 0%, #6B3A54 40%, #3D6B42 100%);
+  --gradient-hero: linear-gradient(135deg, #0078D4 0%, #6C63FF 50%, #00BFA6 100%);
+  --gradient-hero-dark: linear-gradient(135deg, #004080 0%, #3B3096 50%, #007A66 100%);
 
   /* Layout */
   --max-width: 1100px;
-  --radius: 14px;
-  --radius-sm: 10px;
+  --radius: 12px;
+  --radius-sm: 8px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Typography */
@@ -59,38 +61,32 @@
 
 /* ── Dark Mode ── */
 [data-theme="dark"] {
-  --color-text: #F0E4E8;
-  --color-text-secondary: #B8A0AC;
-  --color-bg: #1E1520;
-  --color-surface: #2C2030;
-  --color-surface-hover: #3A2C3E;
-  --color-border: #3E2E42;
-  --color-border-light: #2C2030;
-  --color-primary: #E8A0BF;
-  --color-primary-light: #F2C0D4;
-  --color-primary-dark: #C87AA0;
-  --glass-bg: rgba(44, 32, 48, 0.85);
-  --glass-border: rgba(232, 160, 191, 0.12);
+  --color-text: #E5E7EB;
+  --color-text-secondary: #9CA3AF;
+  --color-bg: #0F172A;
+  --color-surface: #1E293B;
+  --color-surface-hover: #334155;
+  --color-border: #334155;
+  --color-border-light: #1E293B;
+  --glass-bg: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --tag-github: #F0E4E8;
+  --tag-github: #E5E7EB;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-text: #F0E4E8;
-    --color-text-secondary: #B8A0AC;
-    --color-bg: #1E1520;
-    --color-surface: #2C2030;
-    --color-surface-hover: #3A2C3E;
-    --color-border: #3E2E42;
-    --color-border-light: #2C2030;
-    --color-primary: #E8A0BF;
-    --color-primary-light: #F2C0D4;
-    --color-primary-dark: #C87AA0;
-    --glass-bg: rgba(44, 32, 48, 0.85);
-    --glass-border: rgba(232, 160, 191, 0.12);
+    --color-text: #E5E7EB;
+    --color-text-secondary: #9CA3AF;
+    --color-bg: #0F172A;
+    --color-surface: #1E293B;
+    --color-surface-hover: #334155;
+    --color-border: #334155;
+    --color-border-light: #1E293B;
+    --glass-bg: rgba(30, 41, 59, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.08);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --tag-github: #F0E4E8;
+    --tag-github: #E5E7EB;
   }
 }
 
@@ -101,14 +97,14 @@ body {
   font-family: var(--font-family);
   color: var(--color-text);
   background: var(--color-bg);
-  line-height: 1.8;
+  line-height: 1.7;
   font-size: 16px;
   transition: background var(--transition), color var(--transition);
   -webkit-font-smoothing: antialiased;
 }
 
 a { color: var(--color-primary); text-decoration: none; transition: color var(--transition); }
-a:hover { color: var(--color-primary-dark); }
+a:hover { color: var(--color-primary-light); }
 
 .container {
   max-width: var(--max-width);
@@ -220,36 +216,19 @@ a:hover { color: var(--color-primary-dark); }
 }
 
 .hero::before {
-  content: '🌸';
-  position: absolute;
-  font-size: 180px;
-  top: -30px;
-  right: -20px;
-  opacity: 0.12;
-  animation: petal-drift 10s ease-in-out infinite;
-}
-
-.hero::after {
   content: '';
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
   animation: hero-shimmer 8s ease-in-out infinite;
 }
 
 @keyframes hero-shimmer {
   0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(3%, 3%); }
-}
-
-@keyframes petal-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(-8px, 6px) rotate(5deg); }
-  50% { transform: translate(4px, 12px) rotate(-3deg); }
-  75% { transform: translate(-4px, 4px) rotate(3deg); }
+  50% { transform: translate(5%, 5%); }
 }
 
 .hero .container {
@@ -268,7 +247,7 @@ a:hover { color: var(--color-primary-dark); }
 
 .hero-subtitle {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 28px;
   max-width: 600px;
 }
@@ -291,7 +270,7 @@ a:hover { color: var(--color-primary-dark); }
 
 .hero-stat-label {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -300,21 +279,21 @@ a:hover { color: var(--color-primary-dark); }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   color: #FFFFFF;
   font-weight: 600;
   padding: 12px 28px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all var(--transition);
   font-size: 15px;
 }
 
 .hero-cta:hover {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(180, 100, 140, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
 }
 
@@ -355,15 +334,15 @@ main {
   left: 0;
   width: 4px;
   height: 100%;
-  background: var(--gradient-hero);
+  background: var(--tone-executive);
   border-radius: var(--radius) 0 0 var(--radius);
   transition: width var(--transition);
 }
 
 .report-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(209, 114, 155, 0.12);
-  border-color: var(--color-primary-light);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
 }
 
 .report-card:hover::before {
@@ -573,7 +552,7 @@ main {
 }
 
 .report-content a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
-.report-content a:hover { color: var(--color-primary-dark); }
+.report-content a:hover { color: var(--color-primary-light); }
 
 .report-content table {
   width: 100%;

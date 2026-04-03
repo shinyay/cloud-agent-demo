@@ -6,8 +6,8 @@ permalink: /about/
 
 <section class="about-hero">
   <div class="container">
-    <h2 class="about-hero-title">About Project Miki</h2>
-    <p class="about-hero-subtitle">An intelligence dashboard curated by GitHub Copilot Coding Agent — describe what you want to research in a GitHub Issue, assign it to <code>@copilot</code>, and the AI agent curates and publishes a report to this site.</p>
+    <h2 class="about-hero-title">About Copilot Pulse</h2>
+    <p class="about-hero-subtitle">An intelligence dashboard curated by GitHub Copilot Cloud Agent — describe what you want to research in a GitHub Issue, assign it to <code>@copilot</code>, and the AI agent curates and publishes a report to this site.</p>
   </div>
 </section>
 
@@ -23,7 +23,7 @@ permalink: /about/
       </li>
       <li>
         <strong>Assign to @copilot</strong><br>
-        Click the <strong>Assignees</strong> gear icon on the right sidebar, type <code>copilot</code>, and select the Copilot Coding Agent.
+        Click the <strong>Assignees</strong> gear icon on the right sidebar, type <code>copilot</code>, and select the Copilot Cloud Agent.
       </li>
       <li>
         <strong>Wait for the PR</strong><br>
@@ -39,7 +39,7 @@ permalink: /about/
   <!-- Sources -->
   <section class="about-section">
     <h2 class="about-section-title">📡 Available Information Sources</h2>
-    <p class="about-section-desc">The Coding Agent can fetch real-time content from these domains:</p>
+    <p class="about-section-desc">The Cloud Agent can fetch real-time content from these domains:</p>
 
     <div class="source-grid">
       <div class="source-group">
@@ -160,7 +160,7 @@ permalink: /about/
   <!-- Japanese section -->
   <section class="about-section about-jp">
     <h2 class="about-section-title">🇯🇵 プロジェクトについて</h2>
-    <p>Project Mikiは、<strong>GitHub Copilot Coding Agent</strong>がキュレーションするインテリジェンスダッシュボードです。</p>
+    <p>Copilot Pulseは、<strong>GitHub Copilot Cloud Agent</strong>がキュレーションするインテリジェンスダッシュボードです。</p>
 
     <h3 class="about-subsection-title">レポートの作成方法</h3>
     <ol class="step-list">

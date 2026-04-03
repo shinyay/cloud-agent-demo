@@ -1,6 +1,6 @@
 blank_issues_enabled: false
 contact_links:
-  - name: "📖 About Project Miki"
+  - name: "📖 About Copilot Pulse"
     url: "https://shinyay.github.io/cloud-agent-demo/about/"
     about: "Learn how this dashboard works and see available information sources"
   - name: "📊 View Dashboard"

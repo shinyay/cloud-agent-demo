@@ -380,7 +380,7 @@ After merging the setup PR, verify everything works:
 
 1. **Visit your dashboard**: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
    - ✅ You should see the Intelligence Dashboard homepage
-   - ✅ The header shows "🌸 Project Miki" with working navigation links
+   - ✅ The header shows "⚡ Copilot Pulse" with working navigation links
 
 2. **Check the navigation links**:
    - Click **"Home"** — should go to your dashboard
@@ -408,7 +408,7 @@ After merging the setup PR, verify everything works:
 
 1. **ダッシュボードにアクセス**: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
    - ✅ インテリジェンスダッシュボードのホームページが表示される
-   - ✅ ヘッダーに「🌸 Project Miki」と正しいナビゲーションリンクが表示される
+   - ✅ ヘッダーに「⚡ Copilot Pulse」と正しいナビゲーションリンクが表示される
 
 2. **ナビゲーションリンクを確認**:
    - **「Home」** をクリック — ダッシュボードに移動すること

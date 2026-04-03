@@ -1,5 +1,5 @@
 name: "📊 Research Request"
-description: "Request a new intelligence report curated by Copilot Coding Agent"
+description: "Request a new intelligence report curated by Copilot Cloud Agent"
 labels: ["report"]
 body:
   - type: markdown

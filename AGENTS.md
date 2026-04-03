@@ -1,4 +1,4 @@
-# AGENTS.md — Project Miki Shared Rules
+# AGENTS.md — Copilot Pulse Shared Rules
 
 This file contains the **shared rules** that apply to ALL agent personas.
 Each persona's specific behavior is defined in `.github/agents/*.agent.md`.

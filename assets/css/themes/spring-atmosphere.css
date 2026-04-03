@@ -1,5 +1,5 @@
 /* ============================================================
-   Project Miki — Spring Atmosphere (春の雰囲気)
+   Copilot Pulse — Spring Atmosphere (春の雰囲気)
    Soft sakura pinks, fresh greens, and warm pastels
    ============================================================ */
 
@@ -220,7 +220,7 @@ a:hover { color: var(--color-primary-dark); }
 }
 
 .hero::before {
-  content: '🌸';
+  content: '⚡';
   position: absolute;
   font-size: 180px;
   top: -30px;

@@ -5,8 +5,8 @@ title: Home
 
 <section class="hero">
   <div class="container">
-    <h2 class="hero-title">🌸 Intelligence Dashboard</h2>
-    <p class="hero-subtitle">AI-curated reports from Microsoft and GitHub sources — powered by GitHub Copilot Coding Agent</p>
+    <h2 class="hero-title">⚡ Intelligence Dashboard</h2>
+    <p class="hero-subtitle">AI-curated reports from Microsoft and GitHub sources — powered by GitHub Copilot Cloud Agent</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-number">{{ site.posts.size }}</div>

@@ -1,6 +1,6 @@
-# 📊 Project Miki — Intelligence Dashboard
+# 📊 Copilot Pulse — Intelligence Dashboard
 
-An intelligence dashboard powered by **GitHub Copilot Coding Agent**. Describe what you want to research in a GitHub Issue, assign it to `@copilot`, and get a curated report published to GitHub Pages.
+An intelligence dashboard powered by **GitHub Copilot Cloud Agent**. Describe what you want to research in a GitHub Issue, assign it to `@copilot`, and get a curated report published to GitHub Pages.
 
 > **📦 Using this as a template?** See the [**Setup Guide (SETUP.md)**](SETUP.md) for step-by-step instructions in English and Japanese.
 
@@ -44,7 +44,7 @@ An intelligence dashboard powered by **GitHub Copilot Coding Agent**. Describe w
 
 ## Available Sources
 
-The Coding Agent can fetch from **13 Microsoft + GitHub domains**:
+The Cloud Agent can fetch from **13 Microsoft + GitHub domains**:
 
 | Category | Domains |
 |----------|---------|
@@ -56,7 +56,7 @@ The Coding Agent can fetch from **13 Microsoft + GitHub domains**:
 ```
 GitHub Issue (user writes research request)
     ↓
-@copilot assigned (Coding Agent activates)
+@copilot assigned (Cloud Agent activates)
     ↓
 Agent fetches content via RSS feeds + HTML from allowed domains
     ↓
@@ -93,7 +93,7 @@ cloud-agent-demo/
 ├── about.md                 ← Usage guide + source list
 ├── archive.md               ← Full report archive
 ├── admin.md                 ← Admin: design & agent management
-├── AGENTS.md                ← Instructions for Coding Agent
+├── AGENTS.md                ← Instructions for Cloud Agent
 └── README.md
 ```
 
