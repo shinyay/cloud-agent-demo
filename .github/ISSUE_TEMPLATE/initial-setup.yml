@@ -8,9 +8,9 @@ body:
       value: |
         ## 🔧 Initial Repository Setup / 初期リポジトリセットアップ
 
-        This issue tells Copilot Coding Agent to update all hardcoded references in this repository to point to **your account and repository**.
+        This issue tells Copilot Cloud Agent to update all hardcoded references in this repository to point to **your account and repository**.
 
-        このIssueは、Copilot Coding Agentにリポジトリ内のすべてのハードコードされた参照を**あなたのアカウントとリポジトリ**に更新するよう指示します。
+        このIssueは、Copilot Cloud Agentにリポジトリ内のすべてのハードコードされた参照を**あなたのアカウントとリポジトリ**に更新するよう指示します。
 
         ---
 
@@ -37,7 +37,7 @@ body:
     id: repo_name
     attributes:
       label: "Repository Name / リポジトリ名"
-      description: "Your repository name (e.g., my-intel-dashboard). This will replace 'project-miki' in all URLs. / あなたのリポジトリ名（例：my-intel-dashboard）。すべてのURLの 'project-miki' を置換します。"
+      description: "Your repository name (e.g., my-intel-dashboard). This will replace 'cloud-agent-demo' in all URLs. / あなたのリポジトリ名（例：my-intel-dashboard）。すべてのURLの 'cloud-agent-demo' を置換します。"
       placeholder: "my-intel-dashboard"
     validations:
       required: true
@@ -49,7 +49,7 @@ body:
       options:
         - label: "I have enabled GitHub Pages (Settings → Pages → Deploy from branch: main) / GitHub Pagesを有効化済み（Settings → Pages → Deploy from branch: main）"
           required: true
-        - label: "I have enabled Copilot Coding Agent (Settings → Copilot → Enabled) / Copilot Coding Agentを有効化済み（Settings → Copilot → Enabled）"
+        - label: "I have enabled Copilot Cloud Agent (Settings → Copilot → Enabled) / Copilot Cloud Agentを有効化済み（Settings → Copilot → Enabled）"
           required: true
 
   - type: markdown
@@ -57,17 +57,17 @@ body:
       value: |
         ---
 
-        ### 📋 Instructions for Copilot Coding Agent
+        ### 📋 Instructions for Copilot Cloud Agent
 
         **When assigned this issue, perform the following find-and-replace operations across the repository:**
 
         **Replace the GitHub username** — In ALL of the files listed below, replace every occurrence of `shinyay` with the username provided above.
 
-        **Replace the repository name** — In ALL of the files listed below, replace every occurrence of `project-miki` with the repository name provided above.
+        **Replace the repository name** — In ALL of the files listed below, replace every occurrence of `cloud-agent-demo` with the repository name provided above.
 
         **Files to modify (8 files, 20+ references):**
 
-        1. **`_config.yml`** — Update `url` (replace `shinyay` in `shinyay.github.io`) and `baseurl` (replace `project-miki`)
+        1. **`_config.yml`** — Update `url` (replace `shinyay` in `shinyay.github.io`) and `baseurl` (replace `cloud-agent-demo`)
         2. **`_layouts/default.html`** — Update 3 GitHub URLs in navigation and footer links
         3. **`_layouts/post.html`** — Update 1 issue link URL in report header
         4. **`index.md`** — Update 3 "New Report" CTA button URLs
@@ -78,7 +78,7 @@ body:
 
         **Important rules:**
         - Replace ALL occurrences of `shinyay` with the provided username
-        - Replace ALL occurrences of `project-miki` with the provided repository name
+        - Replace ALL occurrences of `cloud-agent-demo` with the provided repository name
         - Do NOT modify `SETUP.md` (it uses placeholders intentionally)
         - Do NOT modify `.github/ISSUE_TEMPLATE/initial-setup.yml` (this template)
         - Do NOT modify files in `.github/agents/` or `AGENTS.md` (no hardcoded URLs there)

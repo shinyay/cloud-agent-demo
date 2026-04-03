@@ -497,7 +497,7 @@ Replace these two values throughout the repository:
 | Find / 検索 | Replace With / 置換 |
 |---|---|
 | `shinyay` | Your GitHub username / あなたのGitHubユーザー名 |
-| `project-miki` | Your repository name / あなたのリポジトリ名 |
+| `cloud-agent-demo` | Your repository name / あなたのリポジトリ名 |
 
 ### Complete Reference List / 完全な参照リスト
 
@@ -510,7 +510,7 @@ Below is every hardcoded reference that must be updated:
 ```yaml
 # Before / 変更前:
 url: "https://shinyay.github.io"
-baseurl: "/project-miki"
+baseurl: "/cloud-agent-demo"
 
 # After / 変更後:
 url: "https://YOUR_USERNAME.github.io"
@@ -521,15 +521,15 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- Line 22: Nav CTA link / ナビCTAリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>
 
 <!-- Line 38: Footer GitHub link / フッターGitHubリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" ...>
 
 <!-- Line 40: Footer New Report link / フッター新規レポートリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>
 ```
 
@@ -537,7 +537,7 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- Issue link in report header / レポートヘッダーのIssueリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/{{ page.issue_number }}" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/{{ page.issue_number }}" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/{{ page.issue_number }}" ...>
 ```
 
@@ -545,7 +545,7 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- Hero CTA / ヒーローCTA -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>
 <!-- (3 occurrences — same replacement for all) -->
 <!-- （3箇所 — すべて同じ置換） -->
@@ -555,11 +555,11 @@ baseurl: "/YOUR_REPO"
 
 ```html
 <!-- English issue link / 英語Issueリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>New Report →</a>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>New Report →</a>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>New Report →</a>
 
 <!-- Japanese issue link / 日本語Issueリンク -->
-<!-- Before --> <a href="https://github.com/shinyay/project-miki/issues/new?template=research-request.yml" ...>新しいIssue →</a>
+<!-- Before --> <a href="https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml" ...>新しいIssue →</a>
 <!-- After  --> <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml" ...>新しいIssue →</a>
 ```
 
@@ -570,7 +570,7 @@ baseurl: "/YOUR_REPO"
 // すべてのwindow.open()呼び出し — ベースURLを置換:
 
 // Before / 変更前:
-window.open('https://github.com/shinyay/project-miki/issues/new?title=...')
+window.open('https://github.com/shinyay/cloud-agent-demo/issues/new?title=...')
 
 // After / 変更後:
 window.open('https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=...')
@@ -580,18 +580,18 @@ window.open('https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=...')
 
 ```markdown
 <!-- Dashboard URL / ダッシュボードURL -->
-[shinyay.github.io/project-miki](https://shinyay.github.io/project-miki/)
+[shinyay.github.io/cloud-agent-demo](https://shinyay.github.io/cloud-agent-demo/)
 → [YOUR_USERNAME.github.io/YOUR_REPO](https://YOUR_USERNAME.github.io/YOUR_REPO/)
 
 <!-- Issue link / Issueリンク -->
-[**Issues → New Issue**](https://github.com/shinyay/project-miki/issues/new?template=research-request.yml)
+[**Issues → New Issue**](https://github.com/shinyay/cloud-agent-demo/issues/new?template=research-request.yml)
 → [**Issues → New Issue**](https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=research-request.yml)
 
 <!-- Project structure / プロジェクト構造 -->
-project-miki/  →  YOUR_REPO/
+cloud-agent-demo/  →  YOUR_REPO/
 
 <!-- Admin page / 管理ページ -->
-[/admin/](https://shinyay.github.io/project-miki/admin/)
+[/admin/](https://shinyay.github.io/cloud-agent-demo/admin/)
 → [/admin/](https://YOUR_USERNAME.github.io/YOUR_REPO/admin/)
 ```
 
@@ -599,8 +599,8 @@ project-miki/  →  YOUR_REPO/
 
 ```yaml
 # Before / 変更前:
-url: "https://shinyay.github.io/project-miki/about/"
-url: "https://shinyay.github.io/project-miki/"
+url: "https://shinyay.github.io/cloud-agent-demo/about/"
+url: "https://shinyay.github.io/cloud-agent-demo/"
 
 # After / 変更後:
 url: "https://YOUR_USERNAME.github.io/YOUR_REPO/about/"
@@ -630,7 +630,7 @@ find . -type f \( -name "*.md" -o -name "*.html" -o -name "*.yml" \) \
 # ⚠️ YOUR_REPO を実際のリポジトリ名に置き換えてください
 find . -type f \( -name "*.md" -o -name "*.html" -o -name "*.yml" \) \
   -not -path "./.git/*" -not -path "./SETUP.md" \
-  -exec sed -i 's/project-miki/YOUR_REPO/g' {} +
+  -exec sed -i 's/cloud-agent-demo/YOUR_REPO/g' {} +
 
 # Commit the changes / 変更をコミット
 git add -A
